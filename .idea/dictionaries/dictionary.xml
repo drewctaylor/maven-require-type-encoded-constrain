@@ -2,6 +2,7 @@
   <dictionary name="dictionary">
     <words>
       <w>peano</w>
+      <w>uncurried</w>
     </words>
   </dictionary>
 </component>
