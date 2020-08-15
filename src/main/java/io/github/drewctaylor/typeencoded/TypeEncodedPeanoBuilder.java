@@ -59,7 +59,6 @@ public final class TypeEncodedPeanoBuilder
      *
      * @param  peano the rest of the peano number
      * @param  <T0>  the type of the rest of the peano number
-     * 
      * @return       a type-encoded peano number
      */
     public static <T0 extends TypeEncodedPeano<T0>> TypeEncodedPeanoConcrete<T0> peano(
@@ -123,7 +122,6 @@ public final class TypeEncodedPeanoBuilder
      *
      * @param  number the rest of the peano number
      * @param  <T0>   the type of the rest of the Peano number
-     * 
      * @return        a type-encoded successor of a Peano number
      */
     public static <T0 extends TypeEncodedPeano<T0>> S<T0> s(
