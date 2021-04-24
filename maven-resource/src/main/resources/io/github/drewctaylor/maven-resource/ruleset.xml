@@ -1,7 +1,4 @@
-<ruleset comparisonMethod="maven"
-         xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 http://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+<ruleset>
     <rules>
         <rule groupId="*">
             <ignoreVersions>
@@ -9,7 +6,6 @@
                 <ignoreVersion type="regex">.*\-alpha.*</ignoreVersion>
                 <ignoreVersion type="regex">.*\.beta.*</ignoreVersion>
                 <ignoreVersion type="regex">.*\-beta.*</ignoreVersion>
-                <ignoreVersion type="regex">.*\-M.*</ignoreVersion>
             </ignoreVersions>
         </rule>
         <rule groupId="org.apache.maven.plugins">

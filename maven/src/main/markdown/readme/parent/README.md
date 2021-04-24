@@ -12,37 +12,25 @@ This is a parent POM. It ensures that child projects have a consistent configura
 * Consistent JaCoCo reporting.
 * Consistent README.md location and variable filtering.
 
-As well as:
-
-* References to the following repositories:
-  * https://maven.pkg.github.com/drewctaylor/algebraic-type
-  * https://maven.pkg.github.com/drewctaylor/constrain
-  * https://maven.pkg.github.com/drewctaylor/function
-  * https://maven.pkg.github.com/drewctaylor/maven
-  * https://maven.pkg.github.com/drewctaylor/require
-  * https://maven.pkg.github.com/drewctaylor/type-encoded
-* References to the following plugin repositories:
-  * https://maven.pkg.github.com/drewctaylor/maven
-  * https://maven.pkg.github.com/drewctaylor/javapoet-maven-plugin
-
 ## To Use Maven
 
 To use maven:
 
-1) Update the `~/.m2/settings.xml` to include a github username or github email address and a [github personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+1) Update the `pom.xml` to include a reference to the sonatype staging and snapshot repositories.
 
     For example:
 
     ```xml
-    <settings>
-        <servers>
-            <server>
-                <id>${project.artifactId}</id>
-                <username>github-username-or-email-address</username>
-                <password>github-personal-access-token</password>
-            </server>
-        </servers>
-    </settings>
+   <repositories>
+      <repository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+      </repository>
+      <repository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </repository>
+   </repositories>
     ```
 
 2) Update the `pom.xml` to include a reference to this parent POM.
@@ -55,18 +43,4 @@ To use maven:
         <artifactId>${project.artifactId}</artifactId>
         <version>${project.version}</version>
     </parent>
-    ```
-
-3) Update the `pom.xml` to include a reference to the plugin repository.
-
-    For example:
-
-    ```xml
-    <repositories>
-        <repository>
-            <id>${project.artifactId}</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/drewctaylor/${project.artifactId}</url>
-        </repository>
-    </repositories>
     ```
