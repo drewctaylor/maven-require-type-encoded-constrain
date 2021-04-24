@@ -1,4 +1,3 @@
-[![Workflow Maven Package](https://github.com/drewctaylor/maven/workflows/workflow-maven-package/badge.svg)](https://github.com/drewctaylor/maven/workflows/workflow-maven-package/badge.svg)
 [![Workflow Maven Deploy](https://github.com/drewctaylor/maven/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/maven/workflows/workflow-maven-deploy/badge.svg)
 [![Code Coverage](https://codecov.io/gh/drewctaylor/maven/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/maven)
 
