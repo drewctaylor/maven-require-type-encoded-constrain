@@ -52,6 +52,6 @@ To use maven:
     <parent>
         <groupId>io.github.drewctaylor</groupId>
         <artifactId>maven</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     ```
