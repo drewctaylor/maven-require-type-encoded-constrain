@@ -8,13 +8,5 @@
                 <ignoreVersion type="regex">.*\-beta.*</ignoreVersion>
             </ignoreVersions>
         </rule>
-        <rule groupId="org.apache.maven.plugins">
-            <ignoreVersions>
-                <ignoreVersion type="regex">.*\.alpha.*</ignoreVersion>
-                <ignoreVersion type="regex">.*\-alpha.*</ignoreVersion>
-                <ignoreVersion type="regex">.*\.beta.*</ignoreVersion>
-                <ignoreVersion type="regex">.*\-beta.*</ignoreVersion>
-            </ignoreVersions>
-        </rule>
     </rules>
 </ruleset>
