@@ -22,6 +22,15 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <name>Drew Taylor</name>
+            <email>3899848+drewctaylor@users.noreply.github.com</email>
+            <organization>Drew Taylor</organization>
+            <organizationUrl>https://github.com/drewctaylor</organizationUrl>
+        </developer>
+    </developers>
+
     <distributionManagement>
         <repository>
             <id>ossrh</id>
