@@ -9,6 +9,18 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A maven parent POM's resources.</description>
     <url>https://github.com/drewctaylor/maven</url>
+    <inceptionYear>2020</inceptionYear>
+    <organization>
+        <name>Drew Taylor</name>
+        <url>https://github.com/drewctaylor</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>mit</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
     <distributionManagement>
         <repository>
@@ -197,6 +209,22 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <licenseName>mit</licenseName>
+                    <force>true</force>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>update-project-license</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
