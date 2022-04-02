@@ -6,6 +6,10 @@
     <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>A maven parent POM.</description>
+    <url>https://github.com/drewctaylor/maven</url>
+
     <distributionManagement>
         <repository>
             <id>ossrh</id>
