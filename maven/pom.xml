@@ -31,6 +31,12 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>http://github.com/drewctaylor/maven</connection>
+        <developerConnection>http://github.com/drewctaylor/maven</developerConnection>
+        <url>http://github.com/drewctaylor/maven</url>
+    </scm>
+
     <distributionManagement>
         <repository>
             <id>ossrh</id>
