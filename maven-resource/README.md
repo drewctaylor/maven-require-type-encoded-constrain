@@ -63,7 +63,7 @@ To use maven resources:
            <dependency>
                <groupId>io.github.drewctaylor</groupId>
                <artifactId>maven-resource</artifactId>
-               <version>0.0.2-SNAPSHOT</version>
+               <version>0.0.2</version>
            </dependency>
        </dependencies>
        <executions>
@@ -91,7 +91,7 @@ To use maven resources:
            <dependency>
                <groupId>io.github.drewctaylor</groupId>
                <artifactId>maven-resource</artifactId>
-               <version>0.0.2-SNAPSHOT</version>
+               <version>0.0.2</version>
            </dependency>
        </dependencies>
        <executions>
