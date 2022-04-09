@@ -204,19 +204,19 @@ final class TypeEncodedDecimalTest
 
     void testCompile()
     {
-        final var decimal1 = decimal(_1());
-        final var decimal10 = decimal(_1(_0()));
-        final var decimal100 = decimal(_1(_0(_0())));
-        final var decimalN1 = decimal(negative(_1()));
-        final var decimalN10 = decimal(negative(_1(_0())));
-        final var decimalN100 = decimal(negative(_1(_0(_0()))));
+        final TypeEncodedDecimalConcrete<_1$> decimal1 = decimal(_1());
+        final TypeEncodedDecimalConcrete<_1<_0$>> decimal10 = decimal(_1(_0()));
+        final TypeEncodedDecimalConcrete<_1<_0<_0$>>> decimal100 = decimal(_1(_0(_0())));
+        final TypeEncodedDecimalConcrete<Negative<_1$>> decimalN1 = decimal(negative(_1()));
+        final TypeEncodedDecimalConcrete<Negative<_1<_0$>>> decimalN10 = decimal(negative(_1(_0())));
+        final TypeEncodedDecimalConcrete<Negative<_1<_0<_0$>>>> decimalN100 = decimal(negative(_1(_0(_0()))));
 
-        final var d1 = _1();
-        final var d10 = _1(_0());
-        final var d100 = _1(_0(_0()));
-        final var dn1 = negative(_1());
-        final var dn10 = negative(_1(_0()));
-        final var dn100 = negative(_1(_0(_0())));
+        final _1$ d1 = _1();
+        final _1<_0$> d10 = _1(_0());
+        final _1<_0<_0$>> d100 = _1(_0(_0()));
+        final Negative<_1$> dn1 = negative(_1());
+        final Negative<_1<_0$>> dn10 = negative(_1(_0()));
+        final Negative<_1<_0<_0$>>> dn100 = negative(_1(_0(_0())));
 
         require1(decimal1);
         require10(decimal10);
@@ -305,17 +305,17 @@ final class TypeEncodedDecimalTest
         // requireNegative100(dn10);
         // requireNegative100(dn100);
 
-        final var decimal1o23 = decimal(_1(__2(__3())));
-        final var decimal12o3 = decimal(_1(_2(__3())));
+        final TypeEncodedDecimalConcrete<_1<__2<__3$>>> decimal1o23 = decimal(_1(__2(__3())));
+        final TypeEncodedDecimalConcrete<_1<_2<__3$>>> decimal12o3 = decimal(_1(_2(__3())));
 
-        final var decimalN1o23 = decimal(negative(_1(__2(__3()))));
-        final var decimalN12o3 = decimal(negative(_1(_2(__3()))));
+        final TypeEncodedDecimalConcrete<Negative<_1<__2<__3$>>>> decimalN1o23 = decimal(negative(_1(__2(__3()))));
+        final TypeEncodedDecimalConcrete<Negative<_1<_2<__3$>>>> decimalN12o3 = decimal(negative(_1(_2(__3()))));
 
-        final var d1o23 = _1(__2(__3()));
-        final var d12o3 = _1(_2(__3()));
+        final _1<__2<__3$>> d1o23 = _1(__2(__3()));
+        final _1<_2<__3$>> d12o3 = _1(_2(__3()));
 
-        final var dn1o23 = negative(_1(__2(__3())));
-        final var dn12o3 = negative(_1(_2(__3())));
+        final Negative<_1<__2<__3$>>> dn1o23 = negative(_1(__2(__3())));
+        final Negative<_1<_2<__3$>>> dn12o3 = negative(_1(_2(__3())));
 
         require1_23(decimal1o23);
         require12_3(decimal12o3);

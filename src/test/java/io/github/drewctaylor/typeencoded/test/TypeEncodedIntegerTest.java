@@ -89,19 +89,19 @@ final class TypeEncodedIntegerTest
 
     void testCompile()
     {
-        final var integer1 = integer(_1());
-        final var integer10 = integer(_1(_0()));
-        final var integer100 = integer(_1(_0(_0())));
-        final var integerN1 = integer(negative(_1()));
-        final var integerN10 = integer(negative(_1(_0())));
-        final var integerN100 = integer(negative(_1(_0(_0()))));
+        final TypeEncodedIntegerConcrete<_1$> integer1 = integer(_1());
+        final TypeEncodedIntegerConcrete<_1<_0$>> integer10 = integer(_1(_0()));
+        final TypeEncodedIntegerConcrete<_1<_0<_0$>>> integer100 = integer(_1(_0(_0())));
+        final TypeEncodedIntegerConcrete<Negative<_1$>> integerN1 = integer(negative(_1()));
+        final TypeEncodedIntegerConcrete<Negative<_1<_0$>>> integerN10 = integer(negative(_1(_0())));
+        final TypeEncodedIntegerConcrete<Negative<_1<_0<_0$>>>> integerN100 = integer(negative(_1(_0(_0()))));
 
-        final var i1 = _1();
-        final var i10 = _1(_0());
-        final var i100 = _1(_0(_0()));
-        final var in1 = negative(_1());
-        final var in10 = negative(_1(_0()));
-        final var in100 = negative(_1(_0(_0())));
+        final _1$ i1 = _1();
+        final _1<_0$> i10 = _1(_0());
+        final _1<_0<_0$>> i100 = _1(_0(_0()));
+        final Negative<_1$> in1 = negative(_1());
+        final Negative<_1<_0$>> in10 = negative(_1(_0()));
+        final Negative<_1<_0<_0$>>> in100 = negative(_1(_0(_0())));
 
         require1(integer1);
         require10(integer10);

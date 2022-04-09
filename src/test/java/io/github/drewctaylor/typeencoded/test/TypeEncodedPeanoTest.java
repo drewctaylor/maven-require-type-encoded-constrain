@@ -27,13 +27,13 @@ final class TypeEncodedPeanoTest
 
     void testCompile()
     {
-        final var peanoZ = peano(z());
-        final var peanoSZ = peano(s(z()));
-        final var peanoSSZ = peano(s(s(z())));
+        final TypeEncodedPeanoConcrete<Z> peanoZ = peano(z());
+        final TypeEncodedPeanoConcrete<S<Z>> peanoSZ = peano(s(z()));
+        final TypeEncodedPeanoConcrete<S<S<Z>>> peanoSSZ = peano(s(s(z())));
 
-        final var z = z();
-        final var sz = s(z());
-        final var ssz = s(s(z()));
+        final Z z = z();
+        final S<Z> sz = s(z());
+        final S<S<Z>> ssz = s(s(z()));
 
         requireZ(peanoZ);
         requireSZ(peanoSZ);
