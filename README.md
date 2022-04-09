@@ -82,7 +82,7 @@ final class TypeEncodedDecimalTest
         <dependency>
             <groupId>io.github.drewctaylor</groupId>
             <artifactId>type-encoded</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
     </dependencies>
     ```
