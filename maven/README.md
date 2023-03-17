@@ -1,5 +1,5 @@
-[![Workflow Maven Deploy](https://github.com/drewctaylor/${project.artifactId}/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/${project.artifactId}/workflows/workflow-maven-deploy/badge.svg)
-[![Code Coverage](https://codecov.io/gh/drewctaylor/${project.artifactId}/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/${project.artifactId})
+[![Workflow Maven Deploy](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)
+[![Code Coverage](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain)
 
 # Maven
 
@@ -50,8 +50,8 @@ To use maven:
 
     ```xml
     <parent>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>${project.artifactId}</artifactId>
-        <version>${project.version}</version>
+        <groupId>io.github.drewctaylor</groupId>
+        <artifactId>maven</artifactId>
+        <version>0.0.3-SNAPSHOT</version>
     </parent>
     ```

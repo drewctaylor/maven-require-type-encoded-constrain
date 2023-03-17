@@ -1,3 +1,6 @@
+[![Workflow Maven Deploy](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)
+[![Code Coverage](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain)
+
 # Maven Resources
 
 These are resources for a maven parent POM, inlcuding:
@@ -46,7 +49,7 @@ To use maven resources:
    <plugin>
        <groupId>com.diffplug.spotless</groupId>
        <artifactId>spotless-maven-plugin</artifactId>
-       <version>2.22.0</version>
+       <version>2.35.0</version>
        <configuration>
            <java>
                <importOrder>
@@ -63,7 +66,7 @@ To use maven resources:
            <dependency>
                <groupId>io.github.drewctaylor</groupId>
                <artifactId>maven-resource</artifactId>
-               <version>0.0.2</version>
+               <version>0.0.3-SNAPSHOT</version>
            </dependency>
        </dependencies>
        <executions>
@@ -83,7 +86,7 @@ To use maven resources:
    <plugin>
        <groupId>org.codehaus.mojo</groupId>
        <artifactId>versions-maven-plugin</artifactId>
-       <version>2.10.0</version>
+       <version>2.15.0</version>
        <configuration>
            <rulesUri>classpath:///io/github/drewctaylor/maven-resource/ruleset.xml</rulesUri>
        </configuration>
@@ -91,7 +94,7 @@ To use maven resources:
            <dependency>
                <groupId>io.github.drewctaylor</groupId>
                <artifactId>maven-resource</artifactId>
-               <version>0.0.2</version>
+               <version>0.0.3-SNAPSHOT</version>
            </dependency>
        </dependencies>
        <executions>
