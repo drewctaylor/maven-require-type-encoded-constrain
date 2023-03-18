@@ -1,5 +1,5 @@
-[![Workflow Maven Deploy](https://github.com/drewctaylor/type-encoded/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/type-encoded/workflows/workflow-maven-deploy/badge.svg)
-[![Code Coverage](https://codecov.io/gh/drewctaylor/type-encoded/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/type-encoded)
+[![Workflow Maven Deploy](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)
+[![Code Coverage](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain)
 
 # Type Encoded
 
@@ -82,7 +82,7 @@ final class TypeEncodedDecimalTest
         <dependency>
             <groupId>io.github.drewctaylor</groupId>
             <artifactId>type-encoded</artifactId>
-            <version>0.0.2</version>
+            <version>0.0.3-SNAPSHOT</version>
         </dependency>
     </dependencies>
     ```

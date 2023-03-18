@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.drewctaylor</groupId>
+        <artifactId>maven</artifactId>
+        <version>0.0.3-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>type-encoded</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Provides a way to encode the following values as types: Peano numbers, integers, and decimals.</description>
+    <url>https://github.com/drewctaylor/type-encoded</url>
+    <inceptionYear>2020</inceptionYear>
+    <organization>
+        <name>Drew Taylor</name>
+        <url>https://github.com/drewctaylor</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Drew Taylor</name>
+            <email>3899848+drewctaylor@users.noreply.github.com</email>
+            <organization>Drew Taylor</organization>
+            <organizationUrl>https://github.com/drewctaylor</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</connection>
+        <developerConnection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</developerConnection>
+        <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>ossrh-snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+</project>

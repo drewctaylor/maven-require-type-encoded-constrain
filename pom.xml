@@ -10,6 +10,7 @@
         <module>maven</module>
         <module>maven-resource</module>
         <module>require</module>
+        <module>type-encoded</module>
     </modules>
 
     <build>
