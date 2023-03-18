@@ -1,5 +1,5 @@
-[![Workflow Maven Deploy](https://github.com/drewctaylor/constrain/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/constrain/workflows/workflow-maven-deploy/badge.svg)
-[![Code Coverage](https://codecov.io/gh/drewctaylor/constrain/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/constrain)
+[![Workflow Maven Deploy](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)
+[![Code Coverage](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain)
 
 # Constrain
 
@@ -140,9 +140,9 @@ final class ConstrainStringTest
     ```xml
     <dependencies>
         <dependency>
-            <groupId>io.github.drewctaylor</groupId>
-            <artifactId>constrain</artifactId>
-            <version>0.0.2</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     ```

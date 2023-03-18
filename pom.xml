@@ -7,6 +7,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>constrain</module>
         <module>maven</module>
         <module>maven-resource</module>
         <module>require</module>
