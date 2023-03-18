@@ -1,5 +1,5 @@
-[![Workflow Maven Deploy](https://github.com/drewctaylor/require/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/require/workflows/workflow-maven-deploy/badge.svg)
-[![Code Coverage](https://codecov.io/gh/drewctaylor/require/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/require)
+[![Workflow Maven Deploy](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)](https://github.com/drewctaylor/maven-require-type-encoded-constrain/workflows/workflow-maven-deploy/badge.svg)
+[![Code Coverage](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain/branch/trunk/graph/badge.svg)](https://codecov.io/gh/drewctaylor/maven-require-type-encoded-constrain)
 
 # Require
 
@@ -118,7 +118,7 @@ an `IllegalArgumentException`. Examples of the messages include:
         <dependency>
             <groupId>io.github.drewctaylor</groupId>
             <artifactId>require</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.3-SNAPSHOT</version>
         </dependency>
     </dependencies>
     ```

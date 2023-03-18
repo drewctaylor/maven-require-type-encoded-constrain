@@ -9,6 +9,7 @@
     <modules>
         <module>maven</module>
         <module>maven-resource</module>
+        <module>require</module>
     </modules>
 
     <build>
