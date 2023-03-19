@@ -15,7 +15,7 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Provides a way to encode the following values as types: Peano numbers, integers, and decimals.</description>
-    <url>https://github.com/drewctaylor/type-encoded</url>
+    <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain/</url>
     <inceptionYear>2020</inceptionYear>
     <organization>
         <name>Drew Taylor</name>

@@ -15,7 +15,7 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Ensure that arguments to a method satisfy requirements.</description>
-    <url>https://github.com/drewctaylor/require</url>
+    <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain/</url>
     <inceptionYear>2020</inceptionYear>
     <organization>
         <name>Drew Taylor</name>

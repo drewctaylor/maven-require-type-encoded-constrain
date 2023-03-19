@@ -6,6 +6,31 @@
     <version>0.0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>A reactor.</description>
+    <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain/</url>
+    <inceptionYear>2020</inceptionYear>
+    <organization>
+        <name>Drew Taylor</name>
+        <url>https://github.com/drewctaylor</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Drew Taylor</name>
+            <email>3899848+drewctaylor@users.noreply.github.com</email>
+            <organization>Drew Taylor</organization>
+            <organizationUrl>https://github.com/drewctaylor</organizationUrl>
+        </developer>
+    </developers>
+
     <modules>
         <module>constrain</module>
         <module>maven</module>
@@ -13,6 +38,12 @@
         <module>require</module>
         <module>type-encoded</module>
     </modules>
+
+    <scm>
+        <connection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</connection>
+        <developerConnection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</developerConnection>
+        <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain</url>
+    </scm>
 
     <build>
         <plugins>

@@ -15,7 +15,7 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Constrain values to be less than a maximum, greater than a minimum, or both, and to encode those constraints into the type of the value.</description>
-    <url>https://github.com/drewctaylor/constrain</url>
+    <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain/</url>
     <inceptionYear>2020</inceptionYear>
     <organization>
         <name>Drew Taylor</name>
