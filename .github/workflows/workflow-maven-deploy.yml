@@ -31,6 +31,5 @@ jobs:
           SERVER_PASSWORD: "${{ secrets.OSSRH_PASSWORD }}"
           GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
 
-
       - name: "Step 4 - CodeCov."
         uses: "codecov/codecov-action@v3"
