@@ -115,7 +115,7 @@ This library provides functions and effects, from 0- to 32-parameters, which sup
         <dependency>
             <groupId>io.github.drewctaylor</groupId>
             <artifactId>function</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.3-SNAPSHOT</version>
         </dependency>
     </dependencies>
     ```

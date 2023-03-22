@@ -37,6 +37,8 @@
         <module>maven-resource</module>
         <module>require</module>
         <module>type-encoded</module>
+        <module>javapoet</module>
+        <module>function</module>
     </modules>
 
     <scm>

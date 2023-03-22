@@ -5,18 +5,47 @@
     <parent>
         <groupId>io.github.drewctaylor</groupId>
         <artifactId>maven</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.3-SNAPSHOT</version>
+        <relativePath/>
     </parent>
 
     <artifactId>function</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>0.0.3-SNAPSHOT</version>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain/</url>
+    <inceptionYear>2020</inceptionYear>
+    <organization>
+        <name>Drew Taylor</name>
+        <url>https://github.com/drewctaylor</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Drew Taylor</name>
+            <email>3899848+drewctaylor@users.noreply.github.com</email>
+            <organization>Drew Taylor</organization>
+            <organizationUrl>https://github.com/drewctaylor</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</connection>
+        <developerConnection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</developerConnection>
+        <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain</url>
+    </scm>
 
     <dependencies>
         <dependency>
             <groupId>io.github.drewctaylor</groupId>
             <artifactId>require</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.3-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -35,20 +64,20 @@
                 <version>1.0.5-SNAPSHOT</version>
                 <configuration>
                     <methods>
-                        <io.github.drewctaylor.effect.javapoet.EffectFactory.iterable>32</io.github.drewctaylor.effect.javapoet.EffectFactory.iterable>
-                        <io.github.drewctaylor.effect.exception.javapoet.EffectThrowsExceptionFactory.iterable>32</io.github.drewctaylor.effect.exception.javapoet.EffectThrowsExceptionFactory.iterable>
-                        <io.github.drewctaylor.function.javapoet.FunctionFactory.iterable>32</io.github.drewctaylor.function.javapoet.FunctionFactory.iterable>
-                        <io.github.drewctaylor.function.exception.javapoet.FunctionThrowsExceptionFactory.iterable>32</io.github.drewctaylor.function.exception.javapoet.FunctionThrowsExceptionFactory.iterable>
-                        <io.github.drewctaylor.product.javapoet.ProductFactory.iterable>32</io.github.drewctaylor.product.javapoet.ProductFactory.iterable>
-                        <io.github.drewctaylor.sum.javapoet.SumFactory.iterable>32</io.github.drewctaylor.sum.javapoet.SumFactory.iterable>
+                        <io.github.drewctaylor.javapoet.effect.EffectFactory.iterable>32</io.github.drewctaylor.javapoet.effect.EffectFactory.iterable>
+                        <io.github.drewctaylor.javapoet.effect.exception.EffectThrowsExceptionFactory.iterable>32</io.github.drewctaylor.javapoet.effect.exception.EffectThrowsExceptionFactory.iterable>
+                        <io.github.drewctaylor.javapoet.function.FunctionFactory.iterable>32</io.github.drewctaylor.javapoet.function.FunctionFactory.iterable>
+                        <io.github.drewctaylor.javapoet.function.exception.FunctionThrowsExceptionFactory.iterable>32</io.github.drewctaylor.javapoet.function.exception.FunctionThrowsExceptionFactory.iterable>
+                        <!--                        <io.github.drewctaylor.javapoet.produce.ProductFactory.iterable>32</io.github.drewctaylor.javapoet.produce.ProductFactory.iterable>-->
+                        <!--                        <io.github.drewctaylor.javapoet.sum.SumFactory.iterable>32</io.github.drewctaylor.javapoet.sum.SumFactory.iterable>-->
                     </methods>
                     <path>${project.basedir}/src/main/java</path>
                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>io.github.drewctaylor</groupId>
-                        <artifactId>function-javapoet</artifactId>
-                        <version>0.0.1-SNAPSHOT</version>
+                        <artifactId>javapoet</artifactId>
+                        <version>0.0.3-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
                 <executions>

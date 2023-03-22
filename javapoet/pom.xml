@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.drewctaylor</groupId>
+        <artifactId>maven</artifactId>
+        <version>0.0.3-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>javapoet</artifactId>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain/</url>
+    <inceptionYear>2020</inceptionYear>
+    <organization>
+        <name>Drew Taylor</name>
+        <url>https://github.com/drewctaylor</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Drew Taylor</name>
+            <email>3899848+drewctaylor@users.noreply.github.com</email>
+            <organization>Drew Taylor</organization>
+            <organizationUrl>https://github.com/drewctaylor</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</connection>
+        <developerConnection>https://github.com/drewctaylor/maven-require-type-encoded-constrain</developerConnection>
+        <url>https://github.com/drewctaylor/maven-require-type-encoded-constrain</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>javapoet</artifactId>
+            <version>1.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.drewctaylor</groupId>
+            <artifactId>require</artifactId>
+            <version>0.0.3-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
