@@ -1,22 +1,17 @@
 package io.github.drewctaylor.javapoet.function.exception;
 
-import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
-import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.javapoet.FunctionDescriptor;
 import io.github.drewctaylor.javapoet.FunctionDescriptorUtility;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import static io.github.drewctaylor.require.RequireNumberInteger.requireInteger;
 import static io.github.drewctaylor.require.RequireNumberInteger.requireZeroOrPositive;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
-import static java.util.stream.Stream.concat;
-import static javax.lang.model.element.Modifier.PUBLIC;
 
 /**
  * Returns java files that implement functions that may throw exceptions - F0E through FnE, where n is the parameter
@@ -50,12 +45,13 @@ public final class FunctionThrowsExceptionFactory
 
         return range(0, parameterCount + 1)
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
-                        ClassName.get("io.github.drewctaylor.function.exception", format("F%sE", parameterCountInner)),
+                        "io.github.drewctaylor.function.exception",
+                        parameterCountInner,
                         range(1, parameterCountInner + 1)
                                 .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
                                 .collect(toList()),
                         Optional.ofNullable(TypeVariableName.get(format("R1"))),
-                        Optional.ofNullable(TypeVariableName.get("E"))))
+                        Optional.ofNullable(TypeVariableName.get("E", Exception.class))))
                 .map(FunctionDescriptorUtility::javaFile)
                 .collect(toList());
     }

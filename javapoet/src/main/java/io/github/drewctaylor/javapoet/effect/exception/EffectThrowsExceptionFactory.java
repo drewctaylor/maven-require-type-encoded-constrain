@@ -1,6 +1,5 @@
 package io.github.drewctaylor.javapoet.effect.exception;
 
-import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.javapoet.FunctionDescriptor;
@@ -28,9 +27,11 @@ public final class EffectThrowsExceptionFactory
      * Returns java files that implement effects that may throw exceptions - E0E through EnE, where n is the parameter
      * count.
      *
-     * @param parameterCountString the parameter count
-     * @return java files that implement effects that may throw exceptions - E0E through EnE, where
-     * n is the parameter count
+     * @param  parameterCountString     the parameter count
+     * 
+     * @return                          java files that implement effects that may throw exceptions - E0E through EnE, where
+     *                                  n is the parameter count
+     * 
      * @throws NullPointerException     if parameterCountString is null
      * @throws IllegalArgumentException if parameterCountString is empty
      * @throws IllegalArgumentException if parameterCountString is not an int
@@ -44,12 +45,13 @@ public final class EffectThrowsExceptionFactory
 
         return range(0, parameterCount + 1)
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
-                        ClassName.get("io.github.drewctaylor.effect.exception", format("E%sE", parameterCountInner)),
+                        "io.github.drewctaylor.effect.exception",
+                        parameterCountInner,
                         range(1, parameterCountInner + 1)
                                 .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
                                 .collect(toList()),
                         Optional.empty(),
-                        Optional.ofNullable(TypeVariableName.get("E"))))
+                        Optional.ofNullable(TypeVariableName.get("E", Exception.class))))
                 .map(FunctionDescriptorUtility::javaFile)
                 .collect(toList());
     }

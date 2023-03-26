@@ -1,6 +1,5 @@
 package io.github.drewctaylor.javapoet.effect;
 
-import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.javapoet.FunctionDescriptor;
@@ -26,8 +25,10 @@ public final class EffectFactory
     /**
      * Returns java files that implement effects - E0 through En, where n is the parameter count.
      *
-     * @param parameterCountString the parameter count
-     * @return java files that implement effects - E0 through En, where n is the parameter count
+     * @param  parameterCountString     the parameter count
+     * 
+     * @return                          java files that implement effects - E0 through En, where n is the parameter count
+     * 
      * @throws NullPointerException     if parameterCountString is null
      * @throws IllegalArgumentException if parameterCountString is empty
      * @throws IllegalArgumentException if parameterCountString is not an int
@@ -41,7 +42,8 @@ public final class EffectFactory
 
         return range(0, parameterCount + 1)
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
-                        ClassName.get("io.github.drewctaylor.effect", format("E%s", parameterCountInner)),
+                        "io.github.drewctaylor.effect",
+                        parameterCountInner,
                         range(1, parameterCountInner + 1)
                                 .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
                                 .collect(toList()),
