@@ -7,6 +7,7 @@ import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.require.Require;
 
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,12 +20,19 @@ import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PUBLIC;
 import static javax.lang.model.element.Modifier.STATIC;
 
+/**
+ *
+ */
 public final class FunctionDescriptorUtility
 {
     private FunctionDescriptorUtility()
     {
     }
 
+    /**
+     * @param descriptor
+     * @return
+     */
     public static JavaFile javaFile(
             final FunctionDescriptor descriptor)
     {
@@ -187,7 +195,7 @@ public final class FunctionDescriptorUtility
     private static ParameterSpec parameterSpec(
             final TypeVariableName typeVariableName)
     {
-        return ParameterSpec.builder(typeVariableName, typeVariableName.name.toLowerCase(), FINAL).build();
+        return ParameterSpec.builder(typeVariableName, typeVariableName.name.toLowerCase(Locale.US), FINAL).build();
     }
 
     private static String parameterList(
