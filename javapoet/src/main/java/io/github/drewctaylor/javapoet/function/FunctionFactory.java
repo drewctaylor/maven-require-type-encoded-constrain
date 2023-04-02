@@ -44,9 +44,6 @@ public final class FunctionFactory
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
                         "io.github.drewctaylor.function",
                         parameterCountInner,
-                        range(1, parameterCountInner + 1)
-                                .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
-                                .collect(toList()),
                         Optional.ofNullable(TypeVariableName.get(format("R1"))),
                         Optional.empty()))
                 .map(FunctionDescriptorUtility::javaFile)

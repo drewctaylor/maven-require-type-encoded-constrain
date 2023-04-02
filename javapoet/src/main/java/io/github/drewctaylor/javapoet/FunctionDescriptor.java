@@ -13,6 +13,9 @@ import java.util.stream.Stream;
 
 import static io.github.drewctaylor.require.Require.requireNonNull;
 import static io.github.drewctaylor.require.RequireNumberInteger.requireZeroOrPositive;
+import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.concat;
 import static javax.lang.model.element.Modifier.FINAL;
 
@@ -32,16 +35,18 @@ public class FunctionDescriptor
     public FunctionDescriptor(
             final String packageName,
             final int parameterCount,
-            final List<TypeVariableName> parameterList,
             final Optional<TypeVariableName> returnOptional,
             final Optional<TypeVariableName> exceptionOptional)
     {
         this.packageName = requireNonNull(packageName, "packageName");
         this.parameterCount = requireZeroOrPositive(parameterCount, "parameterCount");
-        this.parameterList = requireNonNull(parameterList, "parameterList");
         this.returnOptional = requireNonNull(returnOptional, "returnOptional");
         this.exceptionOptional = requireNonNull(exceptionOptional, "exceptionOptional");
+
         this.className = ClassName.get(packageName, returnOptional.map(ignore -> "F").orElse("E") + parameterCount + exceptionOptional.map(ignore -> "E").orElse(""));
+        this.parameterList = range(1, parameterCount + 1)
+                .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
+                .collect(toList());
         this.typeVariableNameList = concat(
                 parameterList.stream(),
                 concat(

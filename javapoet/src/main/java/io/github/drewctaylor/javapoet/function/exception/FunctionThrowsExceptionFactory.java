@@ -47,9 +47,6 @@ public final class FunctionThrowsExceptionFactory
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
                         "io.github.drewctaylor.function.exception",
                         parameterCountInner,
-                        range(1, parameterCountInner + 1)
-                                .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
-                                .collect(toList()),
                         Optional.ofNullable(TypeVariableName.get(format("R1"))),
                         Optional.ofNullable(TypeVariableName.get("E", Exception.class))))
                 .map(FunctionDescriptorUtility::javaFile)

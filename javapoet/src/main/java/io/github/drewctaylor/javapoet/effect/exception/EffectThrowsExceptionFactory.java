@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import static io.github.drewctaylor.require.RequireNumberInteger.requireInteger;
 import static io.github.drewctaylor.require.RequireNumberInteger.requireZeroOrPositive;
-import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 
@@ -47,9 +46,6 @@ public final class EffectThrowsExceptionFactory
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
                         "io.github.drewctaylor.effect.exception",
                         parameterCountInner,
-                        range(1, parameterCountInner + 1)
-                                .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
-                                .collect(toList()),
                         Optional.empty(),
                         Optional.ofNullable(TypeVariableName.get("E", Exception.class))))
                 .map(FunctionDescriptorUtility::javaFile)
