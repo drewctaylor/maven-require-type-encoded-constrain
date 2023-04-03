@@ -62,7 +62,7 @@ public interface E20E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
         };
     }
 
-    default E19E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, E> parameter(
+    default E19E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, E> partial(
             final P1 p1)
     {
         return (
@@ -115,5 +115,30 @@ public interface E20E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
         {
             throw e;
         };
+    }
+
+    default E20E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, E> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3,
+                p4,
+                p5,
+                p6,
+                p7,
+                p8,
+                p9,
+                p10,
+                p11,
+                p12,
+                p13,
+                p14,
+                p15,
+                p16,
+                p17,
+                p18,
+                p19,
+                p20) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20);
     }
 }

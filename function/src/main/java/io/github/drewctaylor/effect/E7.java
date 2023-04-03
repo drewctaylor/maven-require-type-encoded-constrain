@@ -35,10 +35,22 @@ public interface E7<P1, P2, P3, P4, P5, P6, P7>
         };
     }
 
-    default E6<P2, P3, P4, P5, P6, P7> parameter(
+    default E6<P2, P3, P4, P5, P6, P7> partial(
             final P1 p1)
     {
         return (
+                p2,
+                p3,
+                p4,
+                p5,
+                p6,
+                p7) -> f(p1, p2, p3, p4, p5, p6, p7);
+    }
+
+    default E7<P1, P2, P3, P4, P5, P6, P7> reverse()
+    {
+        return (
+                p1,
                 p2,
                 p3,
                 p4,

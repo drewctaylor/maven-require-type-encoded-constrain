@@ -26,7 +26,7 @@ public interface F3<P1, P2, P3, R1>
                 p3) -> r1;
     }
 
-    default F2<P2, P3, R1> parameter(
+    default F2<P2, P3, R1> partial(
             final P1 p1)
     {
         return (
@@ -40,5 +40,13 @@ public interface F3<P1, P2, P3, R1>
                 p1,
                 p2,
                 p3) -> p1;
+    }
+
+    default F3<P1, P2, P3, R1> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3) -> f(p1, p2, p3);
     }
 }

@@ -27,10 +27,18 @@ public interface E3<P1, P2, P3>
         };
     }
 
-    default E2<P2, P3> parameter(
+    default E2<P2, P3> partial(
             final P1 p1)
     {
         return (
+                p2,
+                p3) -> f(p1, p2, p3);
+    }
+
+    default E3<P1, P2, P3> reverse()
+    {
+        return (
+                p1,
                 p2,
                 p3) -> f(p1, p2, p3);
     }

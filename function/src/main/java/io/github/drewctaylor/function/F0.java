@@ -1,9 +1,11 @@
 package io.github.drewctaylor.function;
 
+import java.util.function.Supplier;
+
 import static io.github.drewctaylor.require.Require.requireNonNull;
 
 @FunctionalInterface
-public interface F0<R1>
+public interface F0<R1> extends Supplier<R1>
 {
     R1 f();
 
@@ -18,5 +20,11 @@ public interface F0<R1>
             final R1 r1)
     {
         return () -> r1;
+    }
+
+    @Override
+    default R1 get()
+    {
+        return f();
     }
 }

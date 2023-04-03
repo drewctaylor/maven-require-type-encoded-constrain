@@ -34,7 +34,7 @@ public interface E6E<P1, P2, P3, P4, P5, P6, E extends Exception>
         };
     }
 
-    default E5E<P2, P3, P4, P5, P6, E> parameter(
+    default E5E<P2, P3, P4, P5, P6, E> partial(
             final P1 p1)
     {
         return (
@@ -59,5 +59,16 @@ public interface E6E<P1, P2, P3, P4, P5, P6, E extends Exception>
         {
             throw e;
         };
+    }
+
+    default E6E<P1, P2, P3, P4, P5, P6, E> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3,
+                p4,
+                p5,
+                p6) -> f(p1, p2, p3, p4, p5, p6);
     }
 }

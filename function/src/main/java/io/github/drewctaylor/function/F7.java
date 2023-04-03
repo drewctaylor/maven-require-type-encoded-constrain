@@ -34,7 +34,7 @@ public interface F7<P1, P2, P3, P4, P5, P6, P7, R1>
                 p7) -> r1;
     }
 
-    default F6<P2, P3, P4, P5, P6, P7, R1> parameter(
+    default F6<P2, P3, P4, P5, P6, P7, R1> partial(
             final P1 p1)
     {
         return (
@@ -56,5 +56,17 @@ public interface F7<P1, P2, P3, P4, P5, P6, P7, R1>
                 p5,
                 p6,
                 p7) -> p1;
+    }
+
+    default F7<P1, P2, P3, P4, P5, P6, P7, R1> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3,
+                p4,
+                p5,
+                p6,
+                p7) -> f(p1, p2, p3, p4, p5, p6, p7);
     }
 }

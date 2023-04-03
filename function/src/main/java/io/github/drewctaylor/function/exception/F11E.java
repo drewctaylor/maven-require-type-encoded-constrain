@@ -43,7 +43,7 @@ public interface F11E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E extend
                 p11) -> r1;
     }
 
-    default F10E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E> parameter(
+    default F10E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E> partial(
             final P1 p1)
     {
         return (
@@ -94,5 +94,21 @@ public interface F11E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E extend
                 p9,
                 p10,
                 p11) -> p1;
+    }
+
+    default F11E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3,
+                p4,
+                p5,
+                p6,
+                p7,
+                p8,
+                p9,
+                p10,
+                p11) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
     }
 }

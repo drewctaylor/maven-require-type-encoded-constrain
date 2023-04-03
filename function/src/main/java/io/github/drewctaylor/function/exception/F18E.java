@@ -57,7 +57,7 @@ public interface F18E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
                 p18) -> r1;
     }
 
-    default F17E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, R1, E> parameter(
+    default F17E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, R1, E> partial(
             final P1 p1)
     {
         return (
@@ -129,5 +129,28 @@ public interface F18E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
                 p16,
                 p17,
                 p18) -> p1;
+    }
+
+    default F18E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, R1, E> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3,
+                p4,
+                p5,
+                p6,
+                p7,
+                p8,
+                p9,
+                p10,
+                p11,
+                p12,
+                p13,
+                p14,
+                p15,
+                p16,
+                p17,
+                p18) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18);
     }
 }

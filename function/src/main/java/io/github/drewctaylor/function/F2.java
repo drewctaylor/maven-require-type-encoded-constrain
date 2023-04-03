@@ -1,9 +1,11 @@
 package io.github.drewctaylor.function;
 
+import java.util.function.BiFunction;
+
 import static io.github.drewctaylor.require.Require.requireNonNull;
 
 @FunctionalInterface
-public interface F2<P1, P2, R1>
+public interface F2<P1, P2, R1> extends BiFunction<P1, P2, R1>
 {
     R1 f(
             final P1 p1,
@@ -24,7 +26,15 @@ public interface F2<P1, P2, R1>
                 p2) -> r1;
     }
 
-    default F1<P2, R1> parameter(
+    @Override
+    default R1 apply(
+            final P1 p1,
+            final P2 p2)
+    {
+        return f(p1, p2);
+    }
+
+    default F1<P2, R1> partial(
             final P1 p1)
     {
         return (
@@ -36,5 +46,12 @@ public interface F2<P1, P2, R1>
         return (
                 p1,
                 p2) -> p1;
+    }
+
+    default F2<P1, P2, R1> reverse()
+    {
+        return (
+                p1,
+                p2) -> f(p1, p2);
     }
 }

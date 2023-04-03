@@ -51,7 +51,7 @@ public interface F15E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
                 p15) -> r1;
     }
 
-    default F14E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R1, E> parameter(
+    default F14E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R1, E> partial(
             final P1 p1)
     {
         return (
@@ -114,5 +114,25 @@ public interface F15E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
                 p13,
                 p14,
                 p15) -> p1;
+    }
+
+    default F15E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R1, E> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3,
+                p4,
+                p5,
+                p6,
+                p7,
+                p8,
+                p9,
+                p10,
+                p11,
+                p12,
+                p13,
+                p14,
+                p15) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15);
     }
 }

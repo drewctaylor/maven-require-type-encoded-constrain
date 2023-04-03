@@ -85,10 +85,47 @@ public interface E32<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
         };
     }
 
-    default E31<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24, P25, P26, P27, P28, P29, P30, P31, P32> parameter(
+    default E31<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24, P25, P26, P27, P28, P29, P30, P31, P32> partial(
             final P1 p1)
     {
         return (
+                p2,
+                p3,
+                p4,
+                p5,
+                p6,
+                p7,
+                p8,
+                p9,
+                p10,
+                p11,
+                p12,
+                p13,
+                p14,
+                p15,
+                p16,
+                p17,
+                p18,
+                p19,
+                p20,
+                p21,
+                p22,
+                p23,
+                p24,
+                p25,
+                p26,
+                p27,
+                p28,
+                p29,
+                p30,
+                p31,
+                p32) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32);
+    }
+
+    default E32<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24, P25, P26, P27, P28, P29, P30, P31, P32> reverse()
+    {
+        return (
+                p1,
                 p2,
                 p3,
                 p4,

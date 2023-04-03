@@ -30,7 +30,7 @@ public interface E4E<P1, P2, P3, P4, E extends Exception>
         };
     }
 
-    default E3E<P2, P3, P4, E> parameter(
+    default E3E<P2, P3, P4, E> partial(
             final P1 p1)
     {
         return (
@@ -51,5 +51,14 @@ public interface E4E<P1, P2, P3, P4, E extends Exception>
         {
             throw e;
         };
+    }
+
+    default E4E<P1, P2, P3, P4, E> reverse()
+    {
+        return (
+                p1,
+                p2,
+                p3,
+                p4) -> f(p1, p2, p3, p4);
     }
 }
