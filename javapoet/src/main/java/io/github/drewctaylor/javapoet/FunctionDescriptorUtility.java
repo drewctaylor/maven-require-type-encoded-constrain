@@ -5,21 +5,20 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
-import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.require.Require;
 
-import java.util.Locale;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
+import static io.github.drewctaylor.javapoet.JavaPoetUtility.parameterList;
+import static io.github.drewctaylor.javapoet.JavaPoetUtility.parameterSpec;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 import static javax.lang.model.element.Modifier.ABSTRACT;
 import static javax.lang.model.element.Modifier.DEFAULT;
-import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PUBLIC;
 import static javax.lang.model.element.Modifier.STATIC;
 
@@ -48,7 +47,7 @@ public final class FunctionDescriptorUtility
                 .addMethod(constant(descriptor));
 
         superInterface(descriptor).ifPresent(builder::addSuperinterface);
-        methodSpec(descriptor).ifPresent(builder::addMethod);
+        superInterfaceMethodSpec(descriptor).ifPresent(builder::addMethod);
         partial(descriptor).ifPresent(builder::addMethod);
         exception(descriptor).ifPresent(builder::addMethod);
         identity(descriptor).ifPresent(builder::addMethod);
@@ -61,97 +60,91 @@ public final class FunctionDescriptorUtility
                 .build();
     }
 
-    private static Optional<TypeName> superInterface(
+    private static Optional<ParameterizedTypeName> superInterface(
             final FunctionDescriptor descriptor)
     {
-        return descriptor.getExceptionOptional()
-                .map(exceptionType -> Optional.<TypeName>empty())
-                .orElse(descriptor.getReturnOptional()
-                        .map(returnType -> descriptor.getParameterList().size() == 0 ?
-                                Optional.<TypeName>ofNullable(ParameterizedTypeName.get(ClassName.get("java.util.function", "Supplier"), returnType)) :
-                                descriptor.getParameterList().size() == 1 ?
-                                        Optional.<TypeName>ofNullable(ParameterizedTypeName.get(ClassName.get("java.util.function", "Function"), descriptor.getParameterList().get(0), returnType)) :
-                                        descriptor.getParameterList().size() == 2 ?
-                                                Optional.<TypeName>ofNullable(ParameterizedTypeName.get(ClassName.get("java.util.function", "BiFunction"), descriptor.getParameterList().get(0), descriptor.getParameterList().get(1), returnType)) :
-                                                Optional.<TypeName>empty())
-                        .orElse(descriptor.getParameterList().size() == 1 ?
-                                Optional.<TypeName>ofNullable(ParameterizedTypeName.get(ClassName.get("java.util.function", "Consumer"), descriptor.getParameterList().get(0))) :
-                                descriptor.getParameterList().size() == 2 ?
-                                        Optional.<TypeName>ofNullable(ParameterizedTypeName.get(ClassName.get("java.util.function", "BiConsumer"), descriptor.getParameterList().get(0), descriptor.getParameterList().get(1))) :
-                                        Optional.<TypeName>empty()));
+        final Function<TypeVariableName, ParameterizedTypeName> supplierFor = returnType -> ParameterizedTypeName.get(ClassName.get("java.util.function", "Supplier"), returnType);
+        final Function<TypeVariableName, Function<TypeVariableName, ParameterizedTypeName>> functionFor = parameterType1 -> returnType -> ParameterizedTypeName.get(ClassName.get("java.util.function", "Function"), parameterType1, returnType);
+        final Function<TypeVariableName, Function<TypeVariableName, Function<TypeVariableName, ParameterizedTypeName>>> biFunctionFor = parameterType1 -> parameterType2 -> returnType -> ParameterizedTypeName.get(ClassName.get("java.util.function", "BiFunction"), parameterType1, parameterType2, returnType);
+        final Function<TypeVariableName, ParameterizedTypeName> consumerFor = parameterType1 -> ParameterizedTypeName.get(ClassName.get("java.util.function", "Consumer"), parameterType1);
+        final Function<TypeVariableName, Function<TypeVariableName, ParameterizedTypeName>> biConsumerFor = parameterType1 -> parameterType2 -> ParameterizedTypeName.get(ClassName.get("java.util.function", "BiConsumer"), parameterType1, parameterType2);
+
+        return superInterfaceHelper(descriptor, supplierFor, functionFor, biFunctionFor, consumerFor, biConsumerFor);
     }
 
-    private static Optional<MethodSpec> methodSpec(
+    private static Optional<MethodSpec> superInterfaceMethodSpec(
             final FunctionDescriptor descriptor)
     {
+        final Function<TypeVariableName, MethodSpec> forSupplier = returnType -> MethodSpec
+                .methodBuilder("get")
+                .addAnnotation(Override.class)
+                .addModifiers(PUBLIC, DEFAULT)
+                .returns(returnType)
+                .addStatement("return f()")
+                .build();
+
+        final Function<TypeVariableName, Function<TypeVariableName, MethodSpec>> forFunction = parameterType1 -> returnType -> MethodSpec
+                .methodBuilder("apply")
+                .addAnnotation(Override.class)
+                .addModifiers(PUBLIC, DEFAULT)
+                .returns(returnType)
+                .addParameter(parameterSpec(parameterType1))
+                .addStatement("return f($N)", parameterSpec(parameterType1).name)
+                .build();
+
+        final Function<TypeVariableName, Function<TypeVariableName, Function<TypeVariableName, MethodSpec>>> forBiFunction = parameterType1 -> parameterType2 -> returnType -> MethodSpec
+                .methodBuilder("apply")
+                .addAnnotation(Override.class)
+                .addModifiers(PUBLIC, DEFAULT)
+                .returns(returnType)
+                .addParameter(parameterSpec(parameterType1))
+                .addParameter(parameterSpec(parameterType2))
+                .addStatement("return f($N, $N)", parameterSpec(parameterType1).name, parameterSpec(parameterType2).name)
+                .build();
+
+        final Function<TypeVariableName, MethodSpec> forConsumer = parameterType1 -> MethodSpec
+                .methodBuilder("accept")
+                .addAnnotation(Override.class)
+                .addModifiers(PUBLIC, DEFAULT)
+                .addParameter(parameterSpec(parameterType1))
+                .addStatement("f($N)", parameterSpec(parameterType1).name)
+                .build();
+
+        final Function<TypeVariableName, Function<TypeVariableName, MethodSpec>> forBiConsumer = parameterType1 -> parameterType2 -> MethodSpec
+                .methodBuilder("accept")
+                .addAnnotation(Override.class)
+                .addModifiers(PUBLIC, DEFAULT)
+                .addParameter(parameterSpec(parameterType1))
+                .addParameter(parameterSpec(parameterType2))
+                .addStatement("f($N, $N)", parameterSpec(parameterType1).name, parameterSpec(parameterType2).name)
+                .build();
+
+        return superInterfaceHelper(descriptor, forSupplier, forFunction, forBiFunction, forConsumer, forBiConsumer);
+    }
+
+    private static <T> Optional<T> superInterfaceHelper(
+            final FunctionDescriptor descriptor,
+            final Function<TypeVariableName, T> forSupplier,
+            final Function<TypeVariableName, Function<TypeVariableName, T>> forFunction,
+            final Function<TypeVariableName, Function<TypeVariableName, Function<TypeVariableName, T>>> forBiFunction,
+            final Function<TypeVariableName, T> forConsumer,
+            final Function<TypeVariableName, Function<TypeVariableName, T>> forBiConsumer)
+    {
         return descriptor.getExceptionOptional()
-                .map(exceptionType -> Optional.<MethodSpec>empty())
+                .map(exceptionType -> Optional.<T>empty())
                 .orElse(descriptor.getReturnOptional()
-                        .map(returnType -> descriptor.getParameterList().size() == 0 ?
-                                Optional.<MethodSpec>ofNullable(MethodSpec
-                                        .methodBuilder("get")
-                                        .addAnnotation(Override.class)
-                                        .addModifiers(PUBLIC, DEFAULT)
-                                        .returns(returnType)
-                                        .addParameters(descriptor
-                                                .getParameterList()
-                                                .stream()
-                                                .map(FunctionDescriptorUtility::parameterSpec)
-                                                .collect(toList()))
-                                        .addStatement(format("return f(%s)", parameterList(descriptor.getParameterList().stream())))
-                                        .build()) :
+                        .map(returnType -> descriptor.getParameterList().isEmpty() ?
+                                Optional.ofNullable(forSupplier.apply(returnType)) :
                                 descriptor.getParameterList().size() == 1 ?
-                                        Optional.<MethodSpec>ofNullable(MethodSpec
-                                                .methodBuilder("apply")
-                                                .addAnnotation(Override.class)
-                                                .addModifiers(PUBLIC, DEFAULT)
-                                                .returns(returnType)
-                                                .addParameters(descriptor
-                                                        .getParameterList()
-                                                        .stream()
-                                                        .map(FunctionDescriptorUtility::parameterSpec)
-                                                        .collect(toList()))
-                                                .addStatement(format("return f(%s)", parameterList(descriptor.getParameterList().stream())))
-                                                .build()) :
+                                        Optional.ofNullable(forFunction.apply(descriptor.getParameterList().get(0)).apply(returnType)) :
                                         descriptor.getParameterList().size() == 2 ?
-                                                Optional.<MethodSpec>ofNullable(MethodSpec
-                                                        .methodBuilder("apply")
-                                                        .addAnnotation(Override.class)
-                                                        .addModifiers(PUBLIC, DEFAULT)
-                                                        .returns(returnType)
-                                                        .addParameters(descriptor
-                                                                .getParameterList()
-                                                                .stream()
-                                                                .map(FunctionDescriptorUtility::parameterSpec)
-                                                                .collect(toList()))
-                                                        .addStatement(format("return f(%s)", parameterList(descriptor.getParameterList().stream())))
-                                                        .build()) :
-                                                Optional.<MethodSpec>empty())
+                                                Optional.ofNullable(forBiFunction.apply(descriptor.getParameterList().get(0)).apply(descriptor.getParameterList().get(1)).apply(returnType)) :
+                                                Optional.<T>empty())
                         .orElse(descriptor.getParameterList().size() == 1 ?
-                                Optional.<MethodSpec>ofNullable(MethodSpec
-                                        .methodBuilder("accept")
-                                        .addAnnotation(Override.class)
-                                        .addModifiers(PUBLIC, DEFAULT)
-                                        .addParameters(descriptor
-                                                .getParameterList()
-                                                .stream()
-                                                .map(FunctionDescriptorUtility::parameterSpec)
-                                                .collect(toList()))
-                                        .addStatement(format("f(%s)", parameterList(descriptor.getParameterList().stream())))
-                                        .build()) :
+                                Optional.ofNullable(forConsumer.apply(descriptor.getParameterList().get(0))) :
                                 descriptor.getParameterList().size() == 2 ?
-                                        Optional.<MethodSpec>ofNullable(MethodSpec
-                                                .methodBuilder("accept")
-                                                .addAnnotation(Override.class)
-                                                .addModifiers(PUBLIC, DEFAULT)
-                                                .addParameters(descriptor
-                                                        .getParameterList()
-                                                        .stream()
-                                                        .map(FunctionDescriptorUtility::parameterSpec)
-                                                        .collect(toList()))
-                                                .addStatement(format("f(%s)", parameterList(descriptor.getParameterList().stream())))
-                                                .build()) :
-                                        Optional.<MethodSpec>empty()));
+                                        Optional.ofNullable(forBiConsumer.apply(descriptor.getParameterList().get(0)).apply(descriptor.getParameterList().get(1))) :
+                                        Optional.empty()));
     }
 
     private static MethodSpec f(
@@ -164,7 +157,7 @@ public final class FunctionDescriptorUtility
                         descriptor
                                 .getParameterList()
                                 .stream()
-                                .map(FunctionDescriptorUtility::parameterSpec)
+                                .map(JavaPoetUtility::parameterSpec)
                                 .collect(toList()));
 
         descriptor.getExceptionOptional().ifPresent(builder::addException);
@@ -198,72 +191,54 @@ public final class FunctionDescriptorUtility
     private static Optional<MethodSpec> partial(
             final FunctionDescriptor descriptor)
     {
-        final String parameterList1 = parameterList(descriptor.getParameterList().stream().skip(1));
-        final String parameterList2 = parameterList(descriptor.getParameterList().stream());
 
         return descriptor.getParameterList().stream().findFirst().map(parameter -> MethodSpec
                 .methodBuilder("partial")
                 .addModifiers(PUBLIC, DEFAULT)
                 .returns(descriptor.getTypeNameOther().get())
                 .addParameter(parameterSpec(parameter))
-                .addStatement(format("return (%s) -> f(%s)", parameterList1, parameterList2))
+                .addStatement(format("return (%s) -> f(%s)", parameterList(descriptor.getParameterList().stream().skip(1).toList()), parameterList(descriptor.getParameterList())))
                 .build());
     }
 
     private static Optional<MethodSpec> exception(
             final FunctionDescriptor descriptor)
     {
-        return descriptor.getExceptionOptional().map(exception ->
-        {
-            final ParameterSpec parameterSpec = parameterSpec(exception);
-            final String parameterList = parameterList(descriptor.getParameterList().stream());
-
-            return MethodSpec
-                    .methodBuilder("exception")
-                    .addModifiers(PUBLIC, STATIC)
-                    .addTypeVariables(descriptor.getTypeVariableNameList())
-                    .returns(descriptor.getTypeName())
-                    .addParameter(parameterSpec)
-                    .addStatement(
-                            "$T.requireNonNull($N, \"$N\")",
-                            Require.class,
-                            parameterSpec.name,
-                            parameterSpec.name)
-                    .addStatement(format("return (%s) -> { throw $N; }", parameterList), parameterSpec.name)
-                    .build();
-        });
+        return descriptor.getExceptionOptional()
+                .map(exception -> MethodSpec
+                        .methodBuilder("exception")
+                        .addModifiers(PUBLIC, STATIC)
+                        .addTypeVariables(descriptor.getTypeVariableNameList())
+                        .returns(descriptor.getTypeName())
+                        .addParameter(parameterSpec(exception))
+                        .addStatement(
+                                "$T.requireNonNull($N, \"$N\")",
+                                Require.class,
+                                parameterSpec(exception).name,
+                                parameterSpec(exception).name)
+                        .addStatement(format("return (%s) -> { throw $N; }", parameterList(descriptor.getParameterList())), parameterSpec(exception).name)
+                        .build());
     }
 
     private static MethodSpec constant(
             final FunctionDescriptor descriptor)
     {
         return descriptor.getReturnOptional()
-                .map(returnType ->
-                {
-                    final ParameterSpec parameterSpec = parameterSpec(returnType);
-                    final String parameterList = parameterList(descriptor.getParameterList().stream());
-
-                    return MethodSpec
-                            .methodBuilder("constant")
-                            .addModifiers(PUBLIC, STATIC)
-                            .addTypeVariables(descriptor.getTypeVariableNameList())
-                            .returns(descriptor.getTypeName())
-                            .addParameter(parameterSpec)
-                            .addStatement(format("return (%s) -> $N", parameterList), parameterSpec.name)
-                            .build();
-                })
-                .orElseGet(() ->
-                {
-                    final String parameterList = parameterList(descriptor.getParameterList().stream());
-
-                    return MethodSpec
-                            .methodBuilder("nothing")
-                            .addModifiers(PUBLIC, STATIC)
-                            .addTypeVariables(descriptor.getTypeVariableNameList())
-                            .returns(descriptor.getTypeName())
-                            .addStatement(format("return (%s) -> { }", parameterList))
-                            .build();
-                });
+                .map(returnType -> MethodSpec
+                        .methodBuilder("constant")
+                        .addModifiers(PUBLIC, STATIC)
+                        .addTypeVariables(descriptor.getTypeVariableNameList())
+                        .returns(descriptor.getTypeName())
+                        .addParameter(parameterSpec(returnType))
+                        .addStatement(format("return (%s) -> $N", parameterList(descriptor.getParameterList())), parameterSpec(returnType).name)
+                        .build())
+                .orElse(MethodSpec
+                        .methodBuilder("nothing")
+                        .addModifiers(PUBLIC, STATIC)
+                        .addTypeVariables(descriptor.getTypeVariableNameList())
+                        .returns(descriptor.getTypeName())
+                        .addStatement(format("return (%s) -> { }", parameterList(descriptor.getParameterList())))
+                        .build());
     }
 
     private static Optional<MethodSpec> identity(
@@ -277,15 +252,12 @@ public final class FunctionDescriptorUtility
                     Optional.of(parameter),
                     descriptor.getExceptionOptional());
 
-            final ParameterSpec parameterSpec = parameterSpec(parameter);
-            final String parameterList = parameterList(descriptorInner.getParameterList().stream());
-
             return MethodSpec
                     .methodBuilder("identity")
                     .addModifiers(PUBLIC, STATIC)
                     .addTypeVariables(Stream.concat(descriptorInner.getParameterList().stream(), descriptorInner.getExceptionOptional().map(Stream::of).orElseGet(Stream::empty)).collect(toList()))
                     .returns(descriptorInner.getTypeName())
-                    .addStatement(format("return (%s) -> $N", parameterList), parameterSpec.name)
+                    .addStatement(format("return (%s) -> $N", parameterList(descriptorInner.getParameterList())), parameterSpec(parameter).name)
                     .build();
         }));
     }
@@ -299,7 +271,7 @@ public final class FunctionDescriptorUtility
                         .methodBuilder("reverse")
                         .addModifiers(PUBLIC, DEFAULT)
                         .returns(descriptor.getTypeName())
-                        .addStatement(format("return (%s) -> f(%s)", parameterList(descriptor.getParameterList().stream()), parameterList(descriptor.getParameterList().stream())))
+                        .addStatement(format("return (%s) -> f(%s)", parameterList(descriptor.getParameterList()), parameterList(descriptor.getParameterList())))
                         .build());
     }
 
@@ -373,16 +345,4 @@ public final class FunctionDescriptorUtility
 //                .build();
 //    }
     // @formatter:on
-
-    private static ParameterSpec parameterSpec(
-            final TypeVariableName typeVariableName)
-    {
-        return ParameterSpec.builder(typeVariableName, typeVariableName.name.toLowerCase(Locale.US), FINAL).build();
-    }
-
-    private static String parameterList(
-            final Stream<TypeVariableName> typeVariableNameStream)
-    {
-        return typeVariableNameStream.map(typeVariableName -> typeVariableName.name.toLowerCase()).collect(Collectors.joining(", "));
-    }
 }

@@ -19,10 +19,11 @@ import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.concat;
 import static javax.lang.model.element.Modifier.FINAL;
 
-public class FunctionDescriptor
+/**
+ *
+ */
+public final class FunctionDescriptor
 {
-    private final String packageName;
-    private final int parameterCount;
     private final ClassName className;
     private final List<TypeVariableName> parameterList;
     private final Optional<TypeVariableName> returnOptional;
@@ -32,14 +33,21 @@ public class FunctionDescriptor
     private final ParameterSpec parameterSpec;
     private final Optional<TypeName> typeNameOther;
 
+    /**
+     * @param packageName
+     * @param parameterCount
+     * @param returnOptional
+     * @param exceptionOptional
+     */
     public FunctionDescriptor(
             final String packageName,
             final int parameterCount,
             final Optional<TypeVariableName> returnOptional,
             final Optional<TypeVariableName> exceptionOptional)
     {
-        this.packageName = requireNonNull(packageName, "packageName");
-        this.parameterCount = requireZeroOrPositive(parameterCount, "parameterCount");
+        requireNonNull(packageName, "packageName");
+        requireZeroOrPositive(parameterCount, "parameterCount");
+
         this.returnOptional = requireNonNull(returnOptional, "returnOptional");
         this.exceptionOptional = requireNonNull(exceptionOptional, "exceptionOptional");
 
