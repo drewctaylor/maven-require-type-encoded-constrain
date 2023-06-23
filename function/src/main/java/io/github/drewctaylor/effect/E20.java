@@ -34,7 +34,7 @@ public interface E20<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
         return e20;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20> E20<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20> E20<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20> constant()
     {
         return (
                 p1,
@@ -61,7 +61,7 @@ public interface E20<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
         };
     }
 
-    default E19<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20> parameter(
+    default E19<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20> argument(
             final P1 p1)
     {
         return (

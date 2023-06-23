@@ -16,7 +16,7 @@ public interface E2<P1, P2>
         return e2;
     }
 
-    static <P1, P2> E2<P1, P2> nothing()
+    static <P1, P2> E2<P1, P2> constant()
     {
         return (
                 p1,
@@ -25,7 +25,7 @@ public interface E2<P1, P2>
         };
     }
 
-    default E1<P2> parameter(
+    default E1<P2> argument(
             final P1 p1)
     {
         return (

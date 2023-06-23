@@ -30,7 +30,7 @@ public interface E15E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
         return e15e;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, E extends Exception> E15E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, E> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, E extends Exception> E15E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, E> constant()
     {
         return (
                 p1,
@@ -52,7 +52,7 @@ public interface E15E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
         };
     }
 
-    default E14E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, E> parameter(
+    default E14E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, E> argument(
             final P1 p1)
     {
         return (

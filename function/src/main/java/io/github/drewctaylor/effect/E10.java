@@ -24,7 +24,7 @@ public interface E10<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
         return e10;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> E10<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> E10<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> constant()
     {
         return (
                 p1,
@@ -41,7 +41,7 @@ public interface E10<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
         };
     }
 
-    default E9<P2, P3, P4, P5, P6, P7, P8, P9, P10> parameter(
+    default E9<P2, P3, P4, P5, P6, P7, P8, P9, P10> argument(
             final P1 p1)
     {
         return (

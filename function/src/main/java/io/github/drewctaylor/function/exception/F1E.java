@@ -23,7 +23,7 @@ public interface F1E<P1, R1, E extends Exception>
                 p1) -> r1;
     }
 
-    default F0E<R1, E> parameter(
+    default F0E<R1, E> argument(
             final P1 p1)
     {
         return () -> f(p1);

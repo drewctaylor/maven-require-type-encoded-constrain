@@ -22,7 +22,7 @@ public interface E7E<P1, P2, P3, P4, P5, P6, P7, E extends Exception>
         return e7e;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, E extends Exception> E7E<P1, P2, P3, P4, P5, P6, P7, E> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, E extends Exception> E7E<P1, P2, P3, P4, P5, P6, P7, E> constant()
     {
         return (
                 p1,
@@ -36,7 +36,7 @@ public interface E7E<P1, P2, P3, P4, P5, P6, P7, E extends Exception>
         };
     }
 
-    default E6E<P2, P3, P4, P5, P6, P7, E> parameter(
+    default E6E<P2, P3, P4, P5, P6, P7, E> argument(
             final P1 p1)
     {
         return (

@@ -49,7 +49,7 @@ public interface F14E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
                 p14) -> r1;
     }
 
-    default F13E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R1, E> parameter(
+    default F13E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R1, E> argument(
             final P1 p1)
     {
         return (

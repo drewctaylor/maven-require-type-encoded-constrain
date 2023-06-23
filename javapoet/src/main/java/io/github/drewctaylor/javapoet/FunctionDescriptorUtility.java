@@ -30,8 +30,7 @@ public final class FunctionDescriptorUtility
     }
 
     /**
-     * @param descriptor
-     * @return
+     *
      */
     public static JavaFile javaFile(
             final FunctionDescriptor descriptor)
@@ -43,11 +42,11 @@ public final class FunctionDescriptorUtility
                 .addTypeVariables(descriptor.getTypeVariableNameList())
                 .addMethod(f(descriptor))
                 .addMethod(constructor(descriptor))
-                .addMethod(constant(descriptor));
+                .addMethod(constant(descriptor, "constant", "c"));
 
-        parameter(descriptor).ifPresent(builder::addMethod);
-        exception(descriptor).ifPresent(builder::addMethod);
-        identity(descriptor).ifPresent(builder::addMethod);
+        argument(descriptor, "argument", "a").ifPresent(builder::addMethod);
+        exception(descriptor, "exception", "e").ifPresent(builder::addMethod);
+        identity(descriptor, "identity", "id").ifPresent(builder::addMethod);
 
         return JavaFile
                 .builder(descriptor.getClassName().packageName(), builder.build())
@@ -97,47 +96,59 @@ public final class FunctionDescriptorUtility
                 .build();
     }
 
-    private static Optional<MethodSpec> parameter(
-            final FunctionDescriptor descriptor)
+    private static Optional<MethodSpec> argument(
+            final FunctionDescriptor descriptor,
+            final String name,
+            final String... nameArray)
     {
-        final String parameterList1 = parameterList(descriptor.getParameterList().stream().skip(1));
-        final String parameterList2 = parameterList(descriptor.getParameterList().stream());
-
-        return descriptor.getParameterList().stream().findFirst().map(parameter -> MethodSpec
-                .methodBuilder("parameter")
-                .addModifiers(PUBLIC, DEFAULT)
-                .returns(descriptor.getTypeNameOther().get())
-                .addParameter(parameterSpec(parameter))
-                .addStatement(format("return (%s) -> f(%s)", parameterList1, parameterList2))
-                .build());
-    }
-
-    private static Optional<MethodSpec> exception(
-            final FunctionDescriptor descriptor)
-    {
-        return descriptor.getExceptionOptional().map(exception ->
+        return descriptor.getTypeNameForArgument().flatMap(typeNameForArgument ->
         {
-            final ParameterSpec parameterSpec = parameterSpec(exception);
-            final String parameterList = parameterList(descriptor.getParameterList().stream());
+            final String parameterList1 = parameterList(descriptor.getParameterList().stream().skip(1));
+            final String parameterList2 = parameterList(descriptor.getParameterList().stream());
 
-            return MethodSpec
-                    .methodBuilder("exception")
-                    .addModifiers(PUBLIC, STATIC)
-                    .addTypeVariables(descriptor.getTypeVariableNameList())
-                    .returns(descriptor.getTypeName())
-                    .addParameter(parameterSpec)
-                    .addStatement(
-                            "$T.requireNonNull($N, \"$N\")",
-                            Require.class,
-                            parameterSpec.name,
-                            parameterSpec.name)
-                    .addStatement(format("return (%s) -> { throw $N; }", parameterList), parameterSpec.name)
-                    .build();
+            return descriptor.getParameterList().stream().findFirst().map(parameter ->
+
+            MethodSpec
+                    .methodBuilder(name)
+                    .addModifiers(PUBLIC, DEFAULT)
+                    .returns(typeNameForArgument)
+                    .addParameter(parameterSpec(parameter))
+                    .addStatement(format("return (%s) -> f(%s)", parameterList1, parameterList2))
+                    .build());
         });
     }
 
+    private static Optional<MethodSpec> exception(
+            final FunctionDescriptor descriptor,
+            final String name,
+            final String... nameArray)
+    {
+        return descriptor.getExceptionOptional()
+                .map(exception ->
+                {
+                    final ParameterSpec parameterSpec = parameterSpec(exception);
+                    final String parameterList = parameterList(descriptor.getParameterList().stream());
+
+                    return MethodSpec
+                            .methodBuilder(name)
+                            .addModifiers(PUBLIC, STATIC)
+                            .addTypeVariables(descriptor.getTypeVariableNameList())
+                            .returns(descriptor.getTypeName())
+                            .addParameter(parameterSpec)
+                            .addStatement(
+                                    "$T.requireNonNull($N, \"$N\")",
+                                    Require.class,
+                                    parameterSpec.name,
+                                    parameterSpec.name)
+                            .addStatement(format("return (%s) -> { throw $N; }", parameterList), parameterSpec.name)
+                            .build();
+                });
+    }
+
     private static MethodSpec constant(
-            final FunctionDescriptor descriptor)
+            final FunctionDescriptor descriptor,
+            final String name,
+            final String... nameArray)
     {
         return descriptor.getReturnOptional()
                 .map(returnType ->
@@ -146,7 +157,7 @@ public final class FunctionDescriptorUtility
                     final String parameterList = parameterList(descriptor.getParameterList().stream());
 
                     return MethodSpec
-                            .methodBuilder("constant")
+                            .methodBuilder(name)
                             .addModifiers(PUBLIC, STATIC)
                             .addTypeVariables(descriptor.getTypeVariableNameList())
                             .returns(descriptor.getTypeName())
@@ -159,7 +170,7 @@ public final class FunctionDescriptorUtility
                     final String parameterList = parameterList(descriptor.getParameterList().stream());
 
                     return MethodSpec
-                            .methodBuilder("nothing")
+                            .methodBuilder(name)
                             .addModifiers(PUBLIC, STATIC)
                             .addTypeVariables(descriptor.getTypeVariableNameList())
                             .returns(descriptor.getTypeName())
@@ -169,7 +180,9 @@ public final class FunctionDescriptorUtility
     }
 
     private static Optional<MethodSpec> identity(
-            final FunctionDescriptor descriptor)
+            final FunctionDescriptor descriptor,
+            final String name,
+            final String... nameArray)
     {
         return descriptor.getReturnOptional().flatMap(returnType -> descriptor.getParameterList().stream().findFirst().map(parameter ->
         {
@@ -183,7 +196,7 @@ public final class FunctionDescriptorUtility
             final String parameterList = parameterList(descriptorInner.getParameterList().stream());
 
             return MethodSpec
-                    .methodBuilder("identity")
+                    .methodBuilder(name)
                     .addModifiers(PUBLIC, STATIC)
                     .addTypeVariables(Stream.concat(descriptorInner.getParameterList().stream(), descriptorInner.getExceptionOptional().map(Stream::of).orElseGet(Stream::empty)).collect(toList()))
                     .returns(descriptorInner.getTypeName())

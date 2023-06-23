@@ -38,7 +38,7 @@ public interface E24<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
         return e24;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24> E24<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24> E24<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24> constant()
     {
         return (
                 p1,
@@ -69,7 +69,7 @@ public interface E24<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
         };
     }
 
-    default E23<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24> parameter(
+    default E23<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24> argument(
             final P1 p1)
     {
         return (

@@ -28,7 +28,7 @@ public interface E13E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E 
         return e13e;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E extends Exception> E13E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E extends Exception> E13E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E> constant()
     {
         return (
                 p1,
@@ -48,7 +48,7 @@ public interface E13E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E 
         };
     }
 
-    default E12E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E> parameter(
+    default E12E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, E> argument(
             final P1 p1)
     {
         return (

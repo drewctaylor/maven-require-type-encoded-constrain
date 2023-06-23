@@ -26,7 +26,7 @@ public interface F3<P1, P2, P3, R1>
                 p3) -> r1;
     }
 
-    default F2<P2, P3, R1> parameter(
+    default F2<P2, P3, R1> argument(
             final P1 p1)
     {
         return (

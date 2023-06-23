@@ -54,7 +54,7 @@ public interface F17<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
                 p17) -> r1;
     }
 
-    default F16<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, R1> parameter(
+    default F16<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, R1> argument(
             final P1 p1)
     {
         return (

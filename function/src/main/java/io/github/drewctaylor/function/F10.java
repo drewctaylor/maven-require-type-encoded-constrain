@@ -40,7 +40,7 @@ public interface F10<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R1>
                 p10) -> r1;
     }
 
-    default F9<P2, P3, P4, P5, P6, P7, P8, P9, P10, R1> parameter(
+    default F9<P2, P3, P4, P5, P6, P7, P8, P9, P10, R1> argument(
             final P1 p1)
     {
         return (

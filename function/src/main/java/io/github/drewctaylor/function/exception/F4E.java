@@ -29,7 +29,7 @@ public interface F4E<P1, P2, P3, P4, R1, E extends Exception>
                 p4) -> r1;
     }
 
-    default F3E<P2, P3, P4, R1, E> parameter(
+    default F3E<P2, P3, P4, R1, E> argument(
             final P1 p1)
     {
         return (

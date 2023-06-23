@@ -14,7 +14,7 @@ public interface E0
         return e0;
     }
 
-    static E0 nothing()
+    static E0 constant()
     {
         return () ->
         {

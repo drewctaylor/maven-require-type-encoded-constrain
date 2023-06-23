@@ -22,7 +22,7 @@ public interface F1<P1, R1>
                 p1) -> r1;
     }
 
-    default F0<R1> parameter(
+    default F0<R1> argument(
             final P1 p1)
     {
         return () -> f(p1);

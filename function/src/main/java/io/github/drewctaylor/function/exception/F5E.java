@@ -31,7 +31,7 @@ public interface F5E<P1, P2, P3, P4, P5, R1, E extends Exception>
                 p5) -> r1;
     }
 
-    default F4E<P2, P3, P4, P5, R1, E> parameter(
+    default F4E<P2, P3, P4, P5, R1, E> argument(
             final P1 p1)
     {
         return (

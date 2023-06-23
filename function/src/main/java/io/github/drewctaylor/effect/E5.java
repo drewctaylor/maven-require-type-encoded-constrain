@@ -19,7 +19,7 @@ public interface E5<P1, P2, P3, P4, P5>
         return e5;
     }
 
-    static <P1, P2, P3, P4, P5> E5<P1, P2, P3, P4, P5> nothing()
+    static <P1, P2, P3, P4, P5> E5<P1, P2, P3, P4, P5> constant()
     {
         return (
                 p1,
@@ -31,7 +31,7 @@ public interface E5<P1, P2, P3, P4, P5>
         };
     }
 
-    default E4<P2, P3, P4, P5> parameter(
+    default E4<P2, P3, P4, P5> argument(
             final P1 p1)
     {
         return (

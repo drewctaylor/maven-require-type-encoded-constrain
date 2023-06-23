@@ -15,7 +15,7 @@ public interface E1<P1>
         return e1;
     }
 
-    static <P1> E1<P1> nothing()
+    static <P1> E1<P1> constant()
     {
         return (
                 p1) ->
@@ -23,7 +23,7 @@ public interface E1<P1>
         };
     }
 
-    default E0 parameter(
+    default E0 argument(
             final P1 p1)
     {
         return () -> f(p1);

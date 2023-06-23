@@ -32,7 +32,7 @@ public interface F6<P1, P2, P3, P4, P5, P6, R1>
                 p6) -> r1;
     }
 
-    default F5<P2, P3, P4, P5, P6, R1> parameter(
+    default F5<P2, P3, P4, P5, P6, R1> argument(
             final P1 p1)
     {
         return (

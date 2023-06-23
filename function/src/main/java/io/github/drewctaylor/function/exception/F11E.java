@@ -43,7 +43,7 @@ public interface F11E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E extend
                 p11) -> r1;
     }
 
-    default F10E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E> parameter(
+    default F10E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R1, E> argument(
             final P1 p1)
     {
         return (

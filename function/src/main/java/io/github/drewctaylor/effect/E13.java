@@ -27,7 +27,7 @@ public interface E13<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
         return e13;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> E13<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> E13<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> constant()
     {
         return (
                 p1,
@@ -47,7 +47,7 @@ public interface E13<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
         };
     }
 
-    default E12<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> parameter(
+    default E12<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> argument(
             final P1 p1)
     {
         return (

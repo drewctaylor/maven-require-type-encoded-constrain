@@ -32,7 +32,7 @@ public interface E17E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
         return e17e;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, E extends Exception> E17E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, E> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, E extends Exception> E17E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, E> constant()
     {
         return (
                 p1,
@@ -56,7 +56,7 @@ public interface E17E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P1
         };
     }
 
-    default E16E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, E> parameter(
+    default E16E<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, E> argument(
             final P1 p1)
     {
         return (

@@ -23,7 +23,7 @@ public interface E9<P1, P2, P3, P4, P5, P6, P7, P8, P9>
         return e9;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9> E9<P1, P2, P3, P4, P5, P6, P7, P8, P9> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9> E9<P1, P2, P3, P4, P5, P6, P7, P8, P9> constant()
     {
         return (
                 p1,
@@ -39,7 +39,7 @@ public interface E9<P1, P2, P3, P4, P5, P6, P7, P8, P9>
         };
     }
 
-    default E8<P2, P3, P4, P5, P6, P7, P8, P9> parameter(
+    default E8<P2, P3, P4, P5, P6, P7, P8, P9> argument(
             final P1 p1)
     {
         return (

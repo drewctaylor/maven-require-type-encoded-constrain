@@ -20,7 +20,7 @@ public interface E6<P1, P2, P3, P4, P5, P6>
         return e6;
     }
 
-    static <P1, P2, P3, P4, P5, P6> E6<P1, P2, P3, P4, P5, P6> nothing()
+    static <P1, P2, P3, P4, P5, P6> E6<P1, P2, P3, P4, P5, P6> constant()
     {
         return (
                 p1,
@@ -33,7 +33,7 @@ public interface E6<P1, P2, P3, P4, P5, P6>
         };
     }
 
-    default E5<P2, P3, P4, P5, P6> parameter(
+    default E5<P2, P3, P4, P5, P6> argument(
             final P1 p1)
     {
         return (

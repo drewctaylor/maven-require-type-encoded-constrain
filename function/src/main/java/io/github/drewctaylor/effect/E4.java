@@ -18,7 +18,7 @@ public interface E4<P1, P2, P3, P4>
         return e4;
     }
 
-    static <P1, P2, P3, P4> E4<P1, P2, P3, P4> nothing()
+    static <P1, P2, P3, P4> E4<P1, P2, P3, P4> constant()
     {
         return (
                 p1,
@@ -29,7 +29,7 @@ public interface E4<P1, P2, P3, P4>
         };
     }
 
-    default E3<P2, P3, P4> parameter(
+    default E3<P2, P3, P4> argument(
             final P1 p1)
     {
         return (

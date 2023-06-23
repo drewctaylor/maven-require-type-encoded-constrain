@@ -19,7 +19,7 @@ public interface E4E<P1, P2, P3, P4, E extends Exception>
         return e4e;
     }
 
-    static <P1, P2, P3, P4, E extends Exception> E4E<P1, P2, P3, P4, E> nothing()
+    static <P1, P2, P3, P4, E extends Exception> E4E<P1, P2, P3, P4, E> constant()
     {
         return (
                 p1,
@@ -30,7 +30,7 @@ public interface E4E<P1, P2, P3, P4, E extends Exception>
         };
     }
 
-    default E3E<P2, P3, P4, E> parameter(
+    default E3E<P2, P3, P4, E> argument(
             final P1 p1)
     {
         return (
