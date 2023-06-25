@@ -23,7 +23,7 @@ public interface E9<P1, P2, P3, P4, P5, P6, P7, P8, P9>
         return e9;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9> E9<P1, P2, P3, P4, P5, P6, P7, P8, P9> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9> E9<P1, P2, P3, P4, P5, P6, P7, P8, P9> constant()
     {
         return (
                 p1,
@@ -39,24 +39,10 @@ public interface E9<P1, P2, P3, P4, P5, P6, P7, P8, P9>
         };
     }
 
-    default E8<P2, P3, P4, P5, P6, P7, P8, P9> partial(
+    default E8<P2, P3, P4, P5, P6, P7, P8, P9> argument(
             final P1 p1)
     {
         return (
-                p2,
-                p3,
-                p4,
-                p5,
-                p6,
-                p7,
-                p8,
-                p9) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9);
-    }
-
-    default E9<P1, P2, P3, P4, P5, P6, P7, P8, P9> reverse()
-    {
-        return (
-                p1,
                 p2,
                 p3,
                 p4,

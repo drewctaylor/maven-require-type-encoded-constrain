@@ -17,7 +17,7 @@ public interface E2E<P1, P2, E extends Exception>
         return e2e;
     }
 
-    static <P1, P2, E extends Exception> E2E<P1, P2, E> nothing()
+    static <P1, P2, E extends Exception> E2E<P1, P2, E> constant()
     {
         return (
                 p1,
@@ -26,7 +26,7 @@ public interface E2E<P1, P2, E extends Exception>
         };
     }
 
-    default E1E<P2, E> partial(
+    default E1E<P2, E> argument(
             final P1 p1)
     {
         return (
@@ -43,12 +43,5 @@ public interface E2E<P1, P2, E extends Exception>
         {
             throw e;
         };
-    }
-
-    default E2E<P1, P2, E> reverse()
-    {
-        return (
-                p1,
-                p2) -> f(p1, p2);
     }
 }

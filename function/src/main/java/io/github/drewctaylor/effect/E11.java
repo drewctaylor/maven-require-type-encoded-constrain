@@ -25,7 +25,7 @@ public interface E11<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
         return e11;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> E11<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> E11<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> constant()
     {
         return (
                 p1,
@@ -43,26 +43,10 @@ public interface E11<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
         };
     }
 
-    default E10<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> partial(
+    default E10<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> argument(
             final P1 p1)
     {
         return (
-                p2,
-                p3,
-                p4,
-                p5,
-                p6,
-                p7,
-                p8,
-                p9,
-                p10,
-                p11) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
-    }
-
-    default E11<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> reverse()
-    {
-        return (
-                p1,
                 p2,
                 p3,
                 p4,

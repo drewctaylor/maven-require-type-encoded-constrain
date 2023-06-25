@@ -44,7 +44,7 @@ public interface F12<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R1>
                 p12) -> r1;
     }
 
-    default F11<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R1> partial(
+    default F11<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R1> argument(
             final P1 p1)
     {
         return (
@@ -76,22 +76,5 @@ public interface F12<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R1>
                 p10,
                 p11,
                 p12) -> p1;
-    }
-
-    default F12<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R1> reverse()
-    {
-        return (
-                p1,
-                p2,
-                p3,
-                p4,
-                p5,
-                p6,
-                p7,
-                p8,
-                p9,
-                p10,
-                p11,
-                p12) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
     }
 }

@@ -31,7 +31,7 @@ public interface F1<P1, R1> extends Function<P1, R1>
         return f(p1);
     }
 
-    default F0<R1> partial(
+    default F0<R1> argument(
             final P1 p1)
     {
         return () -> f(p1);
@@ -41,11 +41,5 @@ public interface F1<P1, R1> extends Function<P1, R1>
     {
         return (
                 p1) -> p1;
-    }
-
-    default F1<P1, R1> reverse()
-    {
-        return (
-                p1) -> f(p1);
     }
 }

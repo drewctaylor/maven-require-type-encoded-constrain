@@ -37,7 +37,7 @@ public interface F8E<P1, P2, P3, P4, P5, P6, P7, P8, R1, E extends Exception>
                 p8) -> r1;
     }
 
-    default F7E<P2, P3, P4, P5, P6, P7, P8, R1, E> partial(
+    default F7E<P2, P3, P4, P5, P6, P7, P8, R1, E> argument(
             final P1 p1)
     {
         return (
@@ -79,18 +79,5 @@ public interface F8E<P1, P2, P3, P4, P5, P6, P7, P8, R1, E extends Exception>
                 p6,
                 p7,
                 p8) -> p1;
-    }
-
-    default F8E<P1, P2, P3, P4, P5, P6, P7, P8, R1, E> reverse()
-    {
-        return (
-                p1,
-                p2,
-                p3,
-                p4,
-                p5,
-                p6,
-                p7,
-                p8) -> f(p1, p2, p3, p4, p5, p6, p7, p8);
     }
 }

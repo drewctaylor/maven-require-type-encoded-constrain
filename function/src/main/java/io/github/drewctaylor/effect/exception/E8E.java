@@ -23,7 +23,7 @@ public interface E8E<P1, P2, P3, P4, P5, P6, P7, P8, E extends Exception>
         return e8e;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, E extends Exception> E8E<P1, P2, P3, P4, P5, P6, P7, P8, E> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, E extends Exception> E8E<P1, P2, P3, P4, P5, P6, P7, P8, E> constant()
     {
         return (
                 p1,
@@ -38,7 +38,7 @@ public interface E8E<P1, P2, P3, P4, P5, P6, P7, P8, E extends Exception>
         };
     }
 
-    default E7E<P2, P3, P4, P5, P6, P7, P8, E> partial(
+    default E7E<P2, P3, P4, P5, P6, P7, P8, E> argument(
             final P1 p1)
     {
         return (
@@ -67,18 +67,5 @@ public interface E8E<P1, P2, P3, P4, P5, P6, P7, P8, E extends Exception>
         {
             throw e;
         };
-    }
-
-    default E8E<P1, P2, P3, P4, P5, P6, P7, P8, E> reverse()
-    {
-        return (
-                p1,
-                p2,
-                p3,
-                p4,
-                p5,
-                p6,
-                p7,
-                p8) -> f(p1, p2, p3, p4, p5, p6, p7, p8);
     }
 }

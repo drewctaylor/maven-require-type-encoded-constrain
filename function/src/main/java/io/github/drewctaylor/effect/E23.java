@@ -37,7 +37,7 @@ public interface E23<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
         return e23;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23> E23<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23> E23<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23> constant()
     {
         return (
                 p1,
@@ -67,38 +67,10 @@ public interface E23<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14
         };
     }
 
-    default E22<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23> partial(
+    default E22<P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23> argument(
             final P1 p1)
     {
         return (
-                p2,
-                p3,
-                p4,
-                p5,
-                p6,
-                p7,
-                p8,
-                p9,
-                p10,
-                p11,
-                p12,
-                p13,
-                p14,
-                p15,
-                p16,
-                p17,
-                p18,
-                p19,
-                p20,
-                p21,
-                p22,
-                p23) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23);
-    }
-
-    default E23<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23> reverse()
-    {
-        return (
-                p1,
                 p2,
                 p3,
                 p4,

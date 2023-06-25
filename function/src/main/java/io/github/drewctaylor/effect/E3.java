@@ -17,7 +17,7 @@ public interface E3<P1, P2, P3>
         return e3;
     }
 
-    static <P1, P2, P3> E3<P1, P2, P3> nothing()
+    static <P1, P2, P3> E3<P1, P2, P3> constant()
     {
         return (
                 p1,
@@ -27,18 +27,10 @@ public interface E3<P1, P2, P3>
         };
     }
 
-    default E2<P2, P3> partial(
+    default E2<P2, P3> argument(
             final P1 p1)
     {
         return (
-                p2,
-                p3) -> f(p1, p2, p3);
-    }
-
-    default E3<P1, P2, P3> reverse()
-    {
-        return (
-                p1,
                 p2,
                 p3) -> f(p1, p2, p3);
     }

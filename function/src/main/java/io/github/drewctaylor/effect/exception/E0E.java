@@ -15,7 +15,7 @@ public interface E0E<E extends Exception>
         return e0e;
     }
 
-    static <E extends Exception> E0E<E> nothing()
+    static <E extends Exception> E0E<E> constant()
     {
         return () ->
         {

@@ -17,7 +17,7 @@ public interface E1<P1> extends Consumer<P1>
         return e1;
     }
 
-    static <P1> E1<P1> nothing()
+    static <P1> E1<P1> constant()
     {
         return (
                 p1) ->
@@ -32,15 +32,9 @@ public interface E1<P1> extends Consumer<P1>
         f(p1);
     }
 
-    default E0 partial(
+    default E0 argument(
             final P1 p1)
     {
         return () -> f(p1);
-    }
-
-    default E1<P1> reverse()
-    {
-        return (
-                p1) -> f(p1);
     }
 }

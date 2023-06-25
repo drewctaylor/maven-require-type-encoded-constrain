@@ -18,7 +18,7 @@ public interface E2<P1, P2> extends BiConsumer<P1, P2>
         return e2;
     }
 
-    static <P1, P2> E2<P1, P2> nothing()
+    static <P1, P2> E2<P1, P2> constant()
     {
         return (
                 p1,
@@ -35,17 +35,10 @@ public interface E2<P1, P2> extends BiConsumer<P1, P2>
         f(p1, p2);
     }
 
-    default E1<P2> partial(
+    default E1<P2> argument(
             final P1 p1)
     {
         return (
-                p2) -> f(p1, p2);
-    }
-
-    default E2<P1, P2> reverse()
-    {
-        return (
-                p1,
                 p2) -> f(p1, p2);
     }
 }

@@ -34,7 +34,7 @@ public interface F2<P1, P2, R1> extends BiFunction<P1, P2, R1>
         return f(p1, p2);
     }
 
-    default F1<P2, R1> partial(
+    default F1<P2, R1> argument(
             final P1 p1)
     {
         return (
@@ -46,12 +46,5 @@ public interface F2<P1, P2, R1> extends BiFunction<P1, P2, R1>
         return (
                 p1,
                 p2) -> p1;
-    }
-
-    default F2<P1, P2, R1> reverse()
-    {
-        return (
-                p1,
-                p2) -> f(p1, p2);
     }
 }

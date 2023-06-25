@@ -107,7 +107,7 @@ public final class FunctionDescriptor
         return this.parameterSpec;
     }
 
-    public Optional<TypeName> getTypeNameOther()
+    public Optional<TypeName> getTypeNameForArgument()
     {
         return this.typeNameOther;
     }

@@ -25,7 +25,7 @@ public interface E10E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E extends Excepti
         return e10e;
     }
 
-    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E extends Exception> E10E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E> nothing()
+    static <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E extends Exception> E10E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E> constant()
     {
         return (
                 p1,
@@ -42,7 +42,7 @@ public interface E10E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E extends Excepti
         };
     }
 
-    default E9E<P2, P3, P4, P5, P6, P7, P8, P9, P10, E> partial(
+    default E9E<P2, P3, P4, P5, P6, P7, P8, P9, P10, E> argument(
             final P1 p1)
     {
         return (
@@ -75,20 +75,5 @@ public interface E10E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E extends Excepti
         {
             throw e;
         };
-    }
-
-    default E10E<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, E> reverse()
-    {
-        return (
-                p1,
-                p2,
-                p3,
-                p4,
-                p5,
-                p6,
-                p7,
-                p8,
-                p9,
-                p10) -> f(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
     }
 }
