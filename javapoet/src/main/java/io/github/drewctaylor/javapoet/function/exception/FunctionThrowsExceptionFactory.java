@@ -5,11 +5,10 @@ import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.javapoet.FunctionDescriptor;
 import io.github.drewctaylor.javapoet.FunctionDescriptorUtility;
 
-import java.util.Optional;
-
 import static io.github.drewctaylor.require.RequireNumberInteger.requireInteger;
 import static io.github.drewctaylor.require.RequireNumberInteger.requireZeroOrPositive;
 import static java.lang.String.format;
+import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 
@@ -47,8 +46,8 @@ public final class FunctionThrowsExceptionFactory
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
                         "io.github.drewctaylor.function.exception",
                         parameterCountInner,
-                        Optional.ofNullable(TypeVariableName.get(format("R1"))),
-                        Optional.ofNullable(TypeVariableName.get("E", Exception.class))))
+                        ofNullable(TypeVariableName.get(format("R1"))),
+                        ofNullable(TypeVariableName.get("E", Exception.class))))
                 .map(FunctionDescriptorUtility::javaFile)
                 .collect(toList());
     }

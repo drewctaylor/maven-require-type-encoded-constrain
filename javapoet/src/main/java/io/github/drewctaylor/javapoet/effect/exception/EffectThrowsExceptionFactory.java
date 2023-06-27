@@ -5,10 +5,10 @@ import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.javapoet.FunctionDescriptor;
 import io.github.drewctaylor.javapoet.FunctionDescriptorUtility;
 
-import java.util.Optional;
-
 import static io.github.drewctaylor.require.RequireNumberInteger.requireInteger;
 import static io.github.drewctaylor.require.RequireNumberInteger.requireZeroOrPositive;
+import static java.util.Optional.empty;
+import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 
@@ -27,10 +27,10 @@ public final class EffectThrowsExceptionFactory
      * count.
      *
      * @param  parameterCountString     the parameter count
-     * 
+     *
      * @return                          java files that implement effects that may throw exceptions - E0E through EnE, where
      *                                  n is the parameter count
-     * 
+     *
      * @throws NullPointerException     if parameterCountString is null
      * @throws IllegalArgumentException if parameterCountString is empty
      * @throws IllegalArgumentException if parameterCountString is not an int
@@ -46,8 +46,8 @@ public final class EffectThrowsExceptionFactory
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
                         "io.github.drewctaylor.effect.exception",
                         parameterCountInner,
-                        Optional.empty(),
-                        Optional.ofNullable(TypeVariableName.get("E", Exception.class))))
+                        empty(),
+                        ofNullable(TypeVariableName.get("E", Exception.class))))
                 .map(FunctionDescriptorUtility::javaFile)
                 .collect(toList());
     }

@@ -20,7 +20,7 @@ import static java.util.stream.Stream.concat;
 import static javax.lang.model.element.Modifier.FINAL;
 
 /**
- *
+ * A function descriptor.
  */
 public final class FunctionDescriptor
 {
@@ -30,14 +30,17 @@ public final class FunctionDescriptor
     private final Optional<TypeVariableName> exceptionOptional;
     private final List<TypeVariableName> typeVariableNameList;
     private final TypeName typeName;
+    private final TypeName typeNameForCurry;
     private final ParameterSpec parameterSpec;
     private final Optional<TypeName> typeNameOther;
 
     /**
-     * @param packageName
-     * @param parameterCount
-     * @param returnOptional
-     * @param exceptionOptional
+     * Construct a function descriptor.
+     *
+     * @param packageName       the package name
+     * @param parameterCount    the parameter count
+     * @param returnOptional    the type variable name for the return, if any
+     * @param exceptionOptional the type variable name for the exception, if any
      */
     public FunctionDescriptor(
             final String packageName,
@@ -47,29 +50,53 @@ public final class FunctionDescriptor
     {
         requireNonNull(packageName, "packageName");
         requireZeroOrPositive(parameterCount, "parameterCount");
+        requireNonNull(returnOptional, "returnOptional");
+        requireNonNull(exceptionOptional, "exceptionOptional");
 
-        this.returnOptional = requireNonNull(returnOptional, "returnOptional");
-        this.exceptionOptional = requireNonNull(exceptionOptional, "exceptionOptional");
+        this.returnOptional = returnOptional;
+        this.exceptionOptional = exceptionOptional;
 
-        this.className = ClassName.get(packageName, returnOptional.map(ignore -> "F").orElse("E") + parameterCount + exceptionOptional.map(ignore -> "E").orElse(""));
+        this.className = ClassName.get(packageName, format("%s%s%s",
+                returnOptional.map(ignore -> "F").orElse("E"),
+                parameterCount,
+                exceptionOptional.map(ignore -> "E").orElse("")));
+
         this.parameterList = range(1, parameterCount + 1)
                 .mapToObj(parameterIndex -> TypeVariableName.get(format("P%s", parameterIndex)))
                 .collect(toList());
+
         this.typeVariableNameList = concat(
                 parameterList.stream(),
                 concat(
                         returnOptional.map(Stream::of).orElseGet(Stream::empty),
-                        exceptionOptional.map(Stream::of).orElseGet(Stream::empty))).collect(Collectors.toList());
+                        exceptionOptional.map(Stream::of).orElseGet(Stream::empty))).collect(toList());
+
         this.typeName = typeVariableNameList.isEmpty() ?
                 className :
                 ParameterizedTypeName.get(className, typeVariableNameList.toArray(new TypeVariableName[0]));
+
+        TypeName classNameForCurry = ClassName.get(packageName, format("%s%s%s",
+                returnOptional.map(ignore -> "F").orElse("E"),
+                1,
+                exceptionOptional.map(ignore -> "E").orElse("")));
+
+        this.typeNameForCurry = parameterCount < 2 ?
+                typeName :
+                ParameterizedTypeName.get(ClassName.get(packageName, "F1"), classNameForCurry);
+
         this.parameterSpec = ParameterSpec.builder(typeName, className.simpleName().toLowerCase(), FINAL).build();
 
         this.typeNameOther = typeVariableNameList.size() == 0 ?
                 Optional.empty() :
                 Optional.ofNullable(typeVariableNameList.size() == 1 ?
-                        ClassName.get(packageName, returnOptional.map(ignore -> "F").orElse("E") + (parameterCount - 1) + exceptionOptional.map(ignore -> "E").orElse("")) :
-                        ParameterizedTypeName.get(ClassName.get(packageName, returnOptional.map(ignore -> "F").orElse("E") + (parameterCount - 1) + exceptionOptional.map(ignore -> "E").orElse("")), typeVariableNameList.stream().skip(1).collect(Collectors.toList()).toArray(new TypeVariableName[0])));
+                        ClassName.get(packageName, format("%s%s%s",
+                                returnOptional.map(ignore -> "F").orElse("E"),
+                                (parameterCount - 1),
+                                exceptionOptional.map(ignore -> "E").orElse(""))) :
+                        ParameterizedTypeName.get(ClassName.get(packageName, format("%s%s%s",
+                                returnOptional.map(ignore -> "F").orElse("E"),
+                                (parameterCount - 1),
+                                exceptionOptional.map(ignore -> "E").orElse(""))), typeVariableNameList.stream().skip(1).collect(Collectors.toList()).toArray(new TypeVariableName[0])));
     }
 
     public ClassName getClassName()
@@ -110,5 +137,10 @@ public final class FunctionDescriptor
     public Optional<TypeName> getTypeNameForArgument()
     {
         return this.typeNameOther;
+    }
+
+    public TypeName getTypeNameForCurry()
+    {
+        return typeNameForCurry;
     }
 }

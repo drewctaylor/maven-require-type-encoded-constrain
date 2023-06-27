@@ -1,11 +1,9 @@
 package io.github.drewctaylor.effect;
 
-import java.util.function.Consumer;
-
 import static io.github.drewctaylor.require.Require.requireNonNull;
 
 @FunctionalInterface
-public interface E1<P1> extends Consumer<P1>
+public interface E1<P1>
 {
     void f(
             final P1 p1);
@@ -23,13 +21,6 @@ public interface E1<P1> extends Consumer<P1>
                 p1) ->
         {
         };
-    }
-
-    @Override
-    default void accept(
-            final P1 p1)
-    {
-        f(p1);
     }
 
     default E0 argument(

@@ -5,11 +5,11 @@ import com.squareup.javapoet.TypeVariableName;
 import io.github.drewctaylor.javapoet.FunctionDescriptor;
 import io.github.drewctaylor.javapoet.FunctionDescriptorUtility;
 
-import java.util.Optional;
-
 import static io.github.drewctaylor.require.RequireNumberInteger.requireInteger;
 import static io.github.drewctaylor.require.RequireNumberInteger.requireZeroOrPositive;
 import static java.lang.String.format;
+import static java.util.Optional.empty;
+import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 
@@ -26,9 +26,9 @@ public final class FunctionFactory
      * Returns java files that implement functions - F0 through Fn, where n is the parameter count.
      *
      * @param  parameterCountString     the parameter count
-     * 
+     *
      * @return                          java files that implement functions - F0 through Fn, where n is the parameter count
-     * 
+     *
      * @throws NullPointerException     if parameterCountString is null
      * @throws IllegalArgumentException if parameterCountString is empty
      * @throws IllegalArgumentException if parameterCountString is not an int
@@ -44,8 +44,8 @@ public final class FunctionFactory
                 .mapToObj(parameterCountInner -> new FunctionDescriptor(
                         "io.github.drewctaylor.function",
                         parameterCountInner,
-                        Optional.ofNullable(TypeVariableName.get(format("R1"))),
-                        Optional.empty()))
+                        ofNullable(TypeVariableName.get(format("R1"))),
+                        empty()))
                 .map(FunctionDescriptorUtility::javaFile)
                 .collect(toList());
     }

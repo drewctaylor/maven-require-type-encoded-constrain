@@ -1,11 +1,9 @@
 package io.github.drewctaylor.function;
 
-import java.util.function.Function;
-
 import static io.github.drewctaylor.require.Require.requireNonNull;
 
 @FunctionalInterface
-public interface F1<P1, R1> extends Function<P1, R1>
+public interface F1<P1, R1>
 {
     R1 f(
             final P1 p1);
@@ -22,13 +20,6 @@ public interface F1<P1, R1> extends Function<P1, R1>
     {
         return (
                 p1) -> r1;
-    }
-
-    @Override
-    default R1 apply(
-            final P1 p1)
-    {
-        return f(p1);
     }
 
     default F0<R1> argument(
