@@ -49,6 +49,21 @@
     </distributionManagement>
 
     <properties>
+        <plugin.version.com.github.ekryd.sortpom.sortpom-maven-plugin>3.2.1</plugin.version.com.github.ekryd.sortpom.sortpom-maven-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-clean-plugin>3.3.1</plugin.version.org.apache.maven.plugins.maven-clean-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-compiler-plugin>3.11.0</plugin.version.org.apache.maven.plugins.maven-compiler-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-deploy-plugin>3.1.1</plugin.version.org.apache.maven.plugins.maven-deploy-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-enforcer-plugin>3.3.0</plugin.version.org.apache.maven.plugins.maven-enforcer-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-gpg-plugin>3.1.0</plugin.version.org.apache.maven.plugins.maven-gpg-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-install-plugin>3.1.1</plugin.version.org.apache.maven.plugins.maven-install-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-jar-plugin>3.3.0</plugin.version.org.apache.maven.plugins.maven-jar-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-javadoc-plugin>3.5.0</plugin.version.org.apache.maven.plugins.maven-javadoc-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-resources-plugin>3.3.1</plugin.version.org.apache.maven.plugins.maven-resources-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-site-plugin>4.0.0-M9</plugin.version.org.apache.maven.plugins.maven-site-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-source-plugin>3.3.0</plugin.version.org.apache.maven.plugins.maven-source-plugin>
+        <plugin.version.org.apache.maven.plugins.maven-surefire-plugin>3.1.2</plugin.version.org.apache.maven.plugins.maven-surefire-plugin>
+        <plugin.version.org.codehaus.mojo.license-maven-plugin>2.2.0</plugin.version.org.codehaus.mojo.license-maven-plugin>
+        <plugin.version.org.codehaus.mojo.versions-maven-plugin>2.16.0</plugin.version.org.codehaus.mojo.versions-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -57,7 +72,7 @@
             <plugin>
                 <groupId>com.github.ekryd.sortpom</groupId>
                 <artifactId>sortpom-maven-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${plugin.version.com.github.ekryd.sortpom.sortpom-maven-plugin}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <expandEmptyElements>false</expandEmptyElements>
@@ -82,22 +97,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-clean-plugin}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-compiler-plugin}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-deploy-plugin}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-enforcer-plugin}</version>
                 <configuration>
                     <rules>
                         <requireMavenVersion>
@@ -117,7 +132,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-gpg-plugin}</version>
                 <configuration>
                     <gpgArguments>
                         <arg>--pinentry-mode</arg>
@@ -135,17 +150,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-install-plugin}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-jar-plugin}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-javadoc-plugin}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -157,7 +172,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-resources-plugin}</version>
                 <executions>
                     <execution>
                         <id>copy-resources-for-markdown-readme</id>
@@ -206,12 +221,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>4.0.0-M5</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-site-plugin}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-source-plugin}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -223,12 +238,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${plugin.version.org.apache.maven.plugins.maven-surefire-plugin}</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>2.0.0</version>
+                <version>${plugin.version.org.codehaus.mojo.license-maven-plugin}</version>
                 <configuration>
                     <licenseName>mit</licenseName>
                     <force>true</force>
@@ -244,7 +259,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.15.0</version>
+                <version>${plugin.version.org.codehaus.mojo.versions-maven-plugin}</version>
                 <executions>
                     <execution>
                         <goals>

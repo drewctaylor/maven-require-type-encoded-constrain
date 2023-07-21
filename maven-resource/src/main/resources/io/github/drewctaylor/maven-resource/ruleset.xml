@@ -8,5 +8,11 @@
                 <ignoreVersion type="regex">.*\-beta.*</ignoreVersion>
             </ignoreVersions>
         </rule>
+        <rule groupId="org.junit.jupiter">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*\-RC.*</ignoreVersion>
+                <ignoreVersion type="regex">.*\-M.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
     </rules>
 </ruleset>
